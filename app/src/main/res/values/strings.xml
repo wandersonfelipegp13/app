@@ -1,12 +1,19 @@
 <resources>
 
     <string name="app_name">My Application</string>
-    
+
     <!-- Login Activity -->
     <string name="email_input_hint">E-mail</string>
     <string name="password_input_hint">Senha</string>
     <string name="button_sign_in">Entrar</string>
     <string name="sign_up_message">Ainda não tem uma conta?</string>
     <string name="sign_up_link">Crie uma aqui.</string>
+
+    <!-- SignUp Activity -->
+    <string name="name_input_hint">Nome</string>
+    <string name="confirm_password_input_hint">Confirme sua Senha</string>
+    <string name="button_sign_up">Cadastrar-se</string>
+    <string name="sign_in_message">Já possui uma conta?</string>
+    <string name="sign_in_link">Entre aqui.</string>
 
 </resources>
