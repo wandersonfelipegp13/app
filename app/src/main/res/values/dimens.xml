@@ -2,11 +2,22 @@
 <resources>
 
     <!-- Margins -->
+    <dimen name="extra_small_margin">4dp</dimen>
     <dimen name="small_margin">8dp</dimen>
     <dimen name="medium_margin">16dp</dimen>
     <dimen name="large_margin">32dp</dimen>
 
     <!-- Paddings -->
+    <dimen name="small_padding">8dp</dimen>
     <dimen name="medium_padding">16dp</dimen>
+
+    <!-- Elevations -->
+    <dimen name="small_elevation">8dp</dimen>
+
+    <!-- Card corner radius -->
+    <dimen name="home_card_corner_radius">6dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="medium_text">16sp</dimen>
 
 </resources>

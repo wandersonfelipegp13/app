@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".HomeActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/medium_padding"
+            android:paddingEnd="@dimen/medium_padding">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clMenuBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/medium_padding"
+                android:paddingBottom="@dimen/medium_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/ubuntu_light"
+                    android:text="@string/user_name"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/medium_text"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/user_name"
+                    android:src="@drawable/outline_settings_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <GridLayout
+                android:id="@+id/clServices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:columnCount="3"
+                android:rowCount="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clMenuBar">
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:drawablePadding="@dimen/small_margin"
+                    android:fontFamily="@font/ubuntu_light"
+                    android:text="@string/button_animals"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark_gray"
+                    android:textStyle="bold"
+                    app:drawableTopCompat="@drawable/vaca" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:drawablePadding="@dimen/small_margin"
+                    android:fontFamily="@font/ubuntu_light"
+                    android:text="@string/button_production"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark_gray"
+                    android:textStyle="bold"
+                    app:drawableTopCompat="@drawable/balde" />
+
+                <TextView
+                    android:layout_columnWeight="1"
+                    android:drawablePadding="@dimen/small_margin"
+                    android:fontFamily="@font/ubuntu_light"
+                    android:text="@string/button_report"
+                    android:textAlignment="center"
+                    android:textColor="@color/dark_gray"
+                    android:textStyle="bold"
+                    app:drawableTopCompat="@drawable/report" />
+
+            </GridLayout>
+
+            <TextView
+                android:id="@+id/tvDashboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/large_margin"
+                android:fontFamily="@font/ubuntu_light"
+                android:text="@string/dashboard_title"
+                android:textColor="@color/black"
+                android:textSize="@dimen/medium_text"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clServices" />
+
+            <GridLayout
+                android:id="@+id/glDashboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:layout_marginBottom="@dimen/medium_margin"
+                android:columnCount="2"
+                android:rowCount="4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDashboard">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_columnWeight="1"
+                    android:layout_margin="@dimen/extra_small_margin"
+                    android:elevation="@dimen/small_elevation"
+                    app:cardCornerRadius="@dimen/home_card_corner_radius">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <View
+                            android:id="@+id/vTopLineDailyProduction"
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:background="@color/soft_violet"
+                            app:layout_constraintEnd_toStartOf="parent"
+                            app:layout_constraintStart_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/ivDailyProduction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium_margin"
+                            android:layout_marginTop="@dimen/medium_margin"
+                            android:contentDescription="@string/card_daily_production"
+                            android:src="@drawable/balde_filed"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/vTopLineDailyProduction"
+                            app:tint="@color/soft_violet" />
+
+                        <TextView
+                            android:id="@+id/tvDailyProductionLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium_margin"
+                            android:layout_marginTop="@dimen/small_margin"
+                            android:fontFamily="@font/ubuntu_light"
+                            android:text="@string/card_daily_production"
+                            android:textColor="@color/soft_violet"
+                            android:textSize="@dimen/medium_text"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/ivDailyProduction" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium_margin"
+                            android:layout_marginTop="@dimen/small_margin"
+                            android:layout_marginBottom="@dimen/medium_margin"
+                            android:fontFamily="@font/ubuntu_light"
+                            android:text="@string/card_daily_production_value"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvDailyProductionLabel" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_columnWeight="1"
+                    android:layout_margin="@dimen/extra_small_margin"
+                    android:elevation="@dimen/small_elevation"
+                    app:cardCornerRadius="@dimen/home_card_corner_radius">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <View
+                            android:id="@+id/vTopLineCows"
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:background="@color/soft_orange"
+                            app:layout_constraintEnd_toStartOf="parent"
+                            app:layout_constraintStart_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/ivCows"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium_margin"
+                            android:layout_marginTop="@dimen/medium_margin"
+                            android:contentDescription="@string/card_cows"
+                            android:src="@drawable/vaca_filed"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/vTopLineCows"
+                            app:tint="@color/soft_orange" />
+
+                        <TextView
+                            android:id="@+id/tvCows"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium_margin"
+                            android:layout_marginTop="@dimen/small_margin"
+                            android:fontFamily="@font/ubuntu_light"
+                            android:text="@string/card_cows"
+                            android:textColor="@color/soft_orange"
+                            android:textSize="@dimen/medium_text"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/ivCows" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium_margin"
+                            android:layout_marginTop="@dimen/small_margin"
+                            android:layout_marginBottom="@dimen/medium_margin"
+                            android:fontFamily="@font/ubuntu_light"
+                            android:text="@string/card_cows_value"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvCows" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_columnWeight="1"
+                    android:layout_margin="@dimen/extra_small_margin"
+                    android:elevation="@dimen/small_elevation"
+                    app:cardCornerRadius="@dimen/home_card_corner_radius">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <View
+                            android:id="@+id/vTopLineMonthlyProduction"
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:background="@color/soft_blue"
+                            app:layout_constraintEnd_toStartOf="parent"
+                            app:layout_constraintStart_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/ivMonthlyProduction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium_margin"
+                            android:layout_marginTop="@dimen/medium_margin"
+                            android:contentDescription="@string/card_cows"
+                            android:src="@drawable/balde_filed"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/vTopLineMonthlyProduction"
+                            app:tint="@color/soft_blue" />
+
+                        <TextView
+                            android:id="@+id/tvMonthlyProduction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium_margin"
+                            android:layout_marginTop="@dimen/small_margin"
+                            android:fontFamily="@font/ubuntu_light"
+                            android:text="@string/card_monthly_production"
+                            android:textColor="@color/soft_blue"
+                            android:textSize="@dimen/medium_text"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/ivMonthlyProduction" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium_margin"
+                            android:layout_marginTop="@dimen/small_margin"
+                            android:layout_marginBottom="@dimen/medium_margin"
+                            android:fontFamily="@font/ubuntu_light"
+                            android:text="@string/card_monthly_production_value"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvMonthlyProduction" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_columnWeight="1"
+                    android:layout_margin="@dimen/extra_small_margin"
+                    android:elevation="@dimen/small_elevation"
+                    app:cardCornerRadius="@dimen/home_card_corner_radius">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <View
+                            android:id="@+id/vTopLineBirths"
+                            android:layout_width="match_parent"
+                            android:layout_height="6dp"
+                            android:background="@color/soft_red"
+                            app:layout_constraintEnd_toStartOf="parent"
+                            app:layout_constraintStart_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/ivBirths"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium_margin"
+                            android:layout_marginTop="@dimen/medium_margin"
+                            android:contentDescription="@string/card_cows"
+                            android:src="@drawable/vaca_filed"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/vTopLineBirths"
+                            app:tint="@color/soft_red" />
+
+                        <TextView
+                            android:id="@+id/tvBirths"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium_margin"
+                            android:layout_marginTop="@dimen/small_margin"
+                            android:fontFamily="@font/ubuntu_light"
+                            android:text="@string/card_births"
+                            android:textColor="@color/soft_red"
+                            android:textSize="@dimen/medium_text"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/ivBirths" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/medium_margin"
+                            android:layout_marginTop="@dimen/small_margin"
+                            android:layout_marginBottom="@dimen/medium_margin"
+                            android:fontFamily="@font/ubuntu_light"
+                            android:text="@string/card_births_value"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvBirths" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </GridLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

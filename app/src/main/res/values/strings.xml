@@ -16,4 +16,19 @@
     <string name="sign_in_message">Já possui uma conta?</string>
     <string name="sign_in_link">Entre aqui.</string>
 
+    <!-- Home Activity -->
+    <string name="user_name">Nome do Produtor</string>
+    <string name="button_animals">Animais</string>
+    <string name="button_production">Produção</string>
+    <string name="button_report">Relatório</string>
+    <string name="dashboard_title">Dashboard</string>
+    <string name="card_daily_production">Produção diária</string>
+    <string name="card_daily_production_value">126 Litros</string>
+    <string name="card_cows">Vacas</string>
+    <string name="card_cows_value">32 Vacas</string>
+    <string name="card_monthly_production">Produção mensal</string>
+    <string name="card_monthly_production_value">1.385 Litros</string>
+    <string name="card_births">Nascimentos</string>
+    <string name="card_births_value">3 nascimentos</string>
+
 </resources>
