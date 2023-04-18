@@ -31,4 +31,10 @@
     <string name="card_births">Nascimentos</string>
     <string name="card_births_value">3 nascimentos</string>
 
+    <!-- Animals List Activity -->
+    <string name="toolbar_animals_list">53 Animais</string>
+    <string name="animal_photo">Foto do animal</string>
+    <string name="animal_name">Nome do animal</string>
+    <string name="fab_add_animal">Adicionar animal</string>
+
 </resources>

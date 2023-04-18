@@ -20,4 +20,7 @@
     <!-- Text Sizes -->
     <dimen name="medium_text">16sp</dimen>
 
+    <!-- Images -->
+    <dimen name="medium_image">48dp</dimen>
+
 </resources>

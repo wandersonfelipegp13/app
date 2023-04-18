@@ -63,6 +63,7 @@
                 app:layout_constraintTop_toBottomOf="@id/clMenuBar">
 
                 <TextView
+                    android:id="@+id/tvAnimals"
                     android:layout_columnWeight="1"
                     android:drawablePadding="@dimen/small_margin"
                     android:fontFamily="@font/ubuntu_light"
