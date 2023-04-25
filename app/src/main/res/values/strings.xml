@@ -37,4 +37,17 @@
     <string name="animal_name">Nome do animal</string>
     <string name="fab_add_animal">Adicionar animal</string>
 
+    <!-- Animal Activity -->
+    <string name="animal_id_hint">Identificação</string>
+    <string name="animal_race_hint">Raça</string>
+    <string name="animal_weight_hint">Peso</string>
+    <string name="btn_male">Macho</string>
+    <string name="btn_female">Fêmea</string>
+    <string name="animal_birth_hint">Data de Nascimento</string>
+    <string name="btn_producing">Produzindo</string>
+    <string name="btn_not_producing">Não produzindo</string>
+    <string name="btn_care">Cuidados</string>
+    <string name="btn_save">Salvar</string>
+    <string name="btn_delete">Deletar</string>
+
 </resources>

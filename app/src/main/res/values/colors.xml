@@ -6,6 +6,9 @@
     <color name="green_700">#009731</color>
 
     <color name="dark_gray">#636363</color>
+    <color name="light_gray">#E7E7E7</color>
+
+    <color name="red">#E73F5D</color>
 
     <color name="soft_violet">#5E64F5</color>
     <color name="soft_orange">#F5A55E</color>

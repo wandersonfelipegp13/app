@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -31,6 +32,7 @@ public class AnimalsListActivity extends AppCompatActivity {
 
         configureToolbar();
         configureActionBar();
+        onClickNewAnimal();
 
     }
 
@@ -75,6 +77,17 @@ public class AnimalsListActivity extends AppCompatActivity {
     protected AnimalAdapter.AnimalOnClickListener onClickAnimal() {
 
         return ((holder, idx) -> {
+
+        });
+
+    }
+
+    private void onClickNewAnimal() {
+
+        binding.fabAddAnimal.setOnClickListener(view -> {
+
+            Intent intent = new Intent(AnimalsListActivity.this, AnimalActivity.class);
+            startActivity(intent);
 
         });
 
