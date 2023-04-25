@@ -78,6 +78,9 @@ public class AnimalsListActivity extends AppCompatActivity {
 
         return ((holder, idx) -> {
 
+            Intent intent = new Intent(AnimalsListActivity.this, AnimalDetailsActivity.class);
+            startActivity(intent);
+
         });
 
     }
@@ -86,7 +89,7 @@ public class AnimalsListActivity extends AppCompatActivity {
 
         binding.fabAddAnimal.setOnClickListener(view -> {
 
-            Intent intent = new Intent(AnimalsListActivity.this, AnimalActivity.class);
+            Intent intent = new Intent(AnimalsListActivity.this, AnimalFormActivity.class);
             startActivity(intent);
 
         });

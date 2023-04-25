@@ -17,12 +17,12 @@ public class SignUpActivity extends AppCompatActivity {
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        onClickLogin();
+        //onClickLogin();
 
     }
 
-    public void onClickLogin() {
-        binding.tvSignInLink.setOnClickListener(view -> finish());
-    }
+    /*public void onClickLogin() {
+        binding.btnCancel.setOnClickListener(view -> finish());
+    }*/
 
 }

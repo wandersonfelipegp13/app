@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".AnimalActivity"
+        tools:context=".AnimalDetailsActivity"
         tools:showIn="@layout/content_scrolling_animal">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -45,8 +45,7 @@
                     android:layout_height="?attr/actionBarSize"
                     android:background="@android:color/transparent"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/Theme.MyApplication.PopupOverlay"
-                    app:title="Novo Animal" />
+                    app:popupTheme="@style/Theme.MyApplication.PopupOverlay" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -55,16 +54,6 @@
         <include
             android:id="@+id/content"
             layout="@layout/content_scrolling_animal" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabFoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/medium_margin"
-            android:contentDescription="@string/fab_add_animal"
-            app:layout_anchor="@id/appBar"
-            app:layout_anchorGravity="bottom|end"
-            app:srcCompat="@drawable/round_add_a_photo_24" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

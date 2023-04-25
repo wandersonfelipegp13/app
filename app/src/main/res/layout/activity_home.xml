@@ -47,7 +47,8 @@
                     android:src="@drawable/outline_settings_24"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/green_500" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -71,6 +72,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/dark_gray"
                     android:textStyle="bold"
+                    app:drawableTint="@color/green_500"
                     app:drawableTopCompat="@drawable/vaca" />
 
                 <TextView
@@ -81,6 +83,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/dark_gray"
                     android:textStyle="bold"
+                    app:drawableTint="@color/green_500"
                     app:drawableTopCompat="@drawable/balde" />
 
                 <TextView
@@ -91,6 +94,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/dark_gray"
                     android:textStyle="bold"
+                    app:drawableTint="@color/green_500"
                     app:drawableTopCompat="@drawable/report" />
 
             </GridLayout>

@@ -10,50 +10,51 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         tools:context=".SignUpActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/medium_padding">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tvLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
                 android:text="@string/app_name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilName"
-                android:layout_width="match_parent"
+                android:id="@+id/tilNome"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/large_margin"
-                app:hintTextColor="@color/dark_gray"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:minEms="18"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvLogo">
+                app:layout_constraintTop_toBottomOf="@+id/tvLogo">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/name_input_hint"
-                    android:inputType="text" />
+                    android:inputType="textPersonName" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilEmail"
-                android:layout_width="match_parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_margin"
-                app:hintTextColor="@color/dark_gray"
+                android:minEms="18"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilName">
+                app:layout_constraintTop_toBottomOf="@+id/tilNome">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -64,77 +65,57 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilPassword"
-                android:layout_width="match_parent"
+                android:id="@+id/tilPass"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_margin"
+                android:minEms="18"
                 app:endIconMode="password_toggle"
-                app:hintTextColor="@color/dark_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilEmail">
+                app:layout_constraintTop_toBottomOf="@+id/tilEmail">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:hint="@string/password_input_hint"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilConfirmPassword"
-                android:layout_width="match_parent"
+                android:id="@+id/tilConfirmPass"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/small_margin"
+                android:minEms="18"
                 app:endIconMode="password_toggle"
-                app:hintTextColor="@color/dark_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilPassword">
+                app:layout_constraintTop_toBottomOf="@+id/tilPass">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:hint="@string/confirm_password_input_hint"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btnSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/medium_margin"
-                android:text="@string/button_sign_up"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilConfirmPassword" />
-
-            <TextView
-                android:id="@+id/tvSignInMessage"
+                android:id="@+id/btnSignIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_margin"
-                android:text="@string/sign_in_message"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnSignUp" />
-
-            <TextView
-                android:id="@+id/tvSignInLink"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sign_in_link"
-                android:textAlignment="center"
-                android:textColor="@color/green_700"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSignInMessage" />
+                android:layout_marginTop="@dimen/large_margin"
+                android:layout_marginBottom="@dimen/medium_margin"
+                android:text="@string/sign_up"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/tilConfirmPass"
+                app:layout_constraintTop_toBottomOf="@+id/tilConfirmPass" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

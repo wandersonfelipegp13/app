@@ -1,10 +1,9 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.databinding.ActivityLoginBinding;
 
@@ -38,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void onClickSignUp() {
 
-        binding.tvSignUpLink.setOnClickListener(view -> {
+        binding.btnSignUp.setOnClickListener(view -> {
 
             Intent intent = new Intent(this, SignUpActivity.class);
             startActivity(intent);

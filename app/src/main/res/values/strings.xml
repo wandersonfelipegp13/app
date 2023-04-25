@@ -2,19 +2,25 @@
 
     <string name="app_name">My Application</string>
 
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="edit">Editar</string>
+    <string name="save">Salvar</string>
+    <string name="delete">Excluir</string>
+    <string name="cancel">Cancelar</string>
+
+    <string name="care">Cuidados</string>
+
     <!-- Login Activity -->
     <string name="email_input_hint">E-mail</string>
     <string name="password_input_hint">Senha</string>
     <string name="button_sign_in">Entrar</string>
-    <string name="sign_up_message">Ainda não tem uma conta?</string>
-    <string name="sign_up_link">Crie uma aqui.</string>
+    <string name="sign_up">Criar conta</string>
 
     <!-- SignUp Activity -->
     <string name="name_input_hint">Nome</string>
     <string name="confirm_password_input_hint">Confirme sua Senha</string>
     <string name="button_sign_up">Cadastrar-se</string>
-    <string name="sign_in_message">Já possui uma conta?</string>
-    <string name="sign_in_link">Entre aqui.</string>
 
     <!-- Home Activity -->
     <string name="user_name">Nome do Produtor</string>
@@ -37,17 +43,18 @@
     <string name="animal_name">Nome do animal</string>
     <string name="fab_add_animal">Adicionar animal</string>
 
-    <!-- Animal Activity -->
-    <string name="animal_id_hint">Identificação</string>
-    <string name="animal_race_hint">Raça</string>
-    <string name="animal_weight_hint">Peso</string>
-    <string name="btn_male">Macho</string>
-    <string name="btn_female">Fêmea</string>
-    <string name="animal_birth_hint">Data de Nascimento</string>
-    <string name="btn_producing">Produzindo</string>
-    <string name="btn_not_producing">Não produzindo</string>
-    <string name="btn_care">Cuidados</string>
-    <string name="btn_save">Salvar</string>
-    <string name="btn_delete">Deletar</string>
+    <!-- Animal Details Activity -->
+    <string name="animal_id">Identificação</string>
+    <string name="animal_race">Raça</string>
+    <string name="animal_birth">Data de Nascimento</string>
+    <string name="animal_weight">Peso</string>
+    <string name="animal_gender">Gênero</string>
+    <string name="male">Macho</string>
+    <string name="female">Fêmea</string>
+    <string name="producing_status">Situação de Produção</string>
+    <string name="producing">Produzindo</string>
+    <string name="not_producing">Não produzindo</string>
+
+    <string name="production_question">Este animal está produzindo?</string>
 
 </resources>

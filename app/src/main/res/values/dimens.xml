@@ -22,6 +22,7 @@
 
     <!-- Images -->
     <dimen name="medium_image">48dp</dimen>
+    <dimen name="large_image">64dp</dimen>
 
     <!-- App Bar -->
     <dimen name="app_bar_height">180dp</dimen>

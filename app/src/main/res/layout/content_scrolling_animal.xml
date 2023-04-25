@@ -11,187 +11,181 @@
         android:id="@+id/nsvAnimalForm"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/light_gray"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".AnimalActivity"
-        tools:showIn="@layout/activity_animal">
+        tools:context=".AnimalDetailsActivity"
+        tools:showIn="@layout/activity_animal_details">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clAnimalForm"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/large_margin">
+            android:layout_marginTop="@dimen/small_margin">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilIdentificacao"
-                style="@style/Forms"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toStartOf="parent"
+                android:layout_marginHorizontal="@dimen/small_margin"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/animal_id_hint"
-                    android:inputType="text" />
+                    android:layout_gravity="center"
+                    android:padding="@dimen/medium_padding"
+                    android:text="@string/animal_name"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/medium_text" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </androidx.cardview.widget.CardView>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilRaca"
-                style="@style/Forms"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardDetalhes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/small_margin"
                 android:layout_marginTop="@dimen/small_margin"
-                app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilIdentificacao">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/animal_race_hint"
-                    android:inputType="text" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilPeso"
-                style="@style/Forms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_margin"
-                app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilRaca">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/animal_weight_hint"
-                    android:inputType="numberDecimal" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <LinearLayout
-                android:id="@+id/llGenero"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/extra_small_margin"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilPeso">
-
-                <Button
-                    android:id="@+id/btnMasc"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:layout_marginStart="@dimen/medium_margin"
-                    android:layout_marginEnd="@dimen/extra_small_margin"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/light_gray"
-                    android:text="@string/btn_male"
-                    android:textColor="@color/dark_gray" />
-
-                <Button
-                    android:id="@+id/btnFem"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:layout_marginStart="@dimen/extra_small_margin"
-                    android:layout_marginEnd="@dimen/medium_margin"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/light_gray"
-                    android:text="@string/btn_female"
-                    android:textColor="@color/dark_gray" />
-
-            </LinearLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilNasc"
-                style="@style/Forms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/extra_small_margin"
-                app:layout_constraintEnd_toStartOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/llGenero">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/animal_birth_hint"
-                    android:inputType="date" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.button.MaterialButtonToggleGroup
-                android:id="@+id/mtbProduzindo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/medium_margin"
-                android:layout_marginTop="@dimen/small_margin"
-                android:gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilNasc"
-                app:selectionRequired="true"
-                app:singleSelection="true">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnProduzindo"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/btn_producing" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnNaoProduzindo"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/btn_not_producing"
-                    app:autoSizeTextType="uniform" />
-
-            </com.google.android.material.button.MaterialButtonToggleGroup>
-
-            <Button
-                android:id="@+id/btnCuidados"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="@dimen/medium_margin"
-                android:layout_marginTop="@dimen/small_margin"
-                android:text="@string/btn_care"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/mtbProduzindo" />
-
-            <Button
-                android:id="@+id/btnSalvar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="@dimen/medium_margin"
-                android:text="@string/btn_save"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnCuidados" />
-
-            <Button
-                android:id="@+id/btnDeletar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="@dimen/medium_margin"
                 android:layout_marginBottom="@dimen/medium_margin"
-                android:backgroundTint="@color/red"
-                android:text="@string/btn_delete"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnSalvar" />
+                app:layout_constraintTop_toBottomOf="@id/cardNome">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="@dimen/small_padding">
+
+                    <LinearLayout
+                        android:id="@+id/layoutRaca"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/medium_padding"
+                        android:paddingVertical="@dimen/small_padding">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/animal_race"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/animal_race"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/medium_text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutNasc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/medium_padding"
+                        android:paddingVertical="@dimen/small_padding">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/animal_birth"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/animal_birth"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/medium_text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutPeso"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/medium_padding"
+                        android:paddingVertical="@dimen/small_padding">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/animal_weight"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/animal_weight"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/medium_text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutGenero"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/medium_padding"
+                        android:paddingVertical="@dimen/small_padding">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/animal_gender"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/female"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/medium_text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutProducao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/medium_padding"
+                        android:paddingVertical="@dimen/small_padding">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/producing_status"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/producing"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/medium_text" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
 </layout>
