@@ -19,6 +19,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         onClickAnimalsList();
+        onClickProductionList();
 
     }
 
@@ -27,6 +28,17 @@ public class HomeActivity extends AppCompatActivity {
         binding.tvAnimals.setOnClickListener(view -> {
 
             Intent intent = new Intent(this, AnimalsListActivity.class);
+            startActivity(intent);
+
+        });
+
+    }
+
+    private void onClickProductionList() {
+
+        binding.tvProductions.setOnClickListener(view -> {
+
+            Intent intent = new Intent(this, ProductionListActivity.class);
             startActivity(intent);
 
         });

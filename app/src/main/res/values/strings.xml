@@ -70,4 +70,7 @@
     <string name="liters">Litros</string>
     <string name="date">Data</string>
 
+    <!-- Production List Activity -->
+    <string name="add_production">Adicionar produção</string>
+
 </resources>

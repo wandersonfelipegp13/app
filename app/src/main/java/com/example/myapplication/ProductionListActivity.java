@@ -1,0 +1,82 @@
+package com.example.myapplication;
+
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.example.myapplication.databinding.ActivityProductionListBinding;
+import com.example.myapplication.model.Production;
+import com.example.myapplication.model.ProductionAdapter;
+import com.example.myapplication.util.ToolbarConfig;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+
+public class ProductionListActivity extends AppCompatActivity {
+
+    private ActivityProductionListBinding binding;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        binding = ActivityProductionListBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        Toolbar toolbar = binding.toolbar;
+        ToolbarConfig.config(this, toolbar);
+
+        onClickNewProduction();
+
+    }
+
+    @Override
+    protected void onStart() {
+
+        super.onStart();
+
+        List<Production> productions = new ArrayList<>();
+
+        for (int i = 0; i < 33; i++) {
+
+            Calendar calendar = Calendar.getInstance();
+
+            calendar.set(Calendar.YEAR, 2023);
+            calendar.set(Calendar.MONTH, new Random().nextInt(12));
+            calendar.set(Calendar.DATE, new Random().nextInt(31));
+
+            Date date = calendar.getTime();
+
+            productions.add(new Production(null, new Random().nextInt(200), date));
+
+        }
+
+        binding.rvProductions.setLayoutManager(new LinearLayoutManager(ProductionListActivity.this));
+        binding.rvProductions.setItemAnimator(new DefaultItemAnimator());
+        binding.rvProductions.setAdapter(new ProductionAdapter(productions, ProductionListActivity.this, onClickProduction()));
+
+    }
+
+    protected ProductionAdapter.ProductionOnClickListener onClickProduction() {
+
+        return ((holder, idx) -> {
+
+        });
+
+    }
+
+    private void onClickNewProduction() {
+
+        binding.fabAddProduction.setOnClickListener(view -> {
+
+        });
+
+    }
+
+}
