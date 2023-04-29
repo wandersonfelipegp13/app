@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.myapplication.databinding.ActivityAnimalDetailsBinding;
+import com.example.myapplication.util.ToolbarConfig;
 
 public class AnimalDetailsActivity extends AppCompatActivity {
 
@@ -24,28 +25,11 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         binding = ActivityAnimalDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        configureToolbar();
-        configureActionBar();
-
-    }
-    private void configureToolbar() {
-
         Toolbar toolbar = binding.toolbar;
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(view -> finish());
+        ToolbarConfig.config(this, toolbar);
 
     }
 
-    private void configureActionBar() {
-
-        ActionBar actionBar = getSupportActionBar();
-
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(false);
-        }
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -69,6 +53,8 @@ public class AnimalDetailsActivity extends AppCompatActivity {
 
         } else if (id == R.id.menuItemCuidados) {
 
+            Intent intent = new Intent(this, CareListActivity.class);
+            startActivity(intent);
             return true;
 
         } else if (id == R.id.menuItemExcluir) {

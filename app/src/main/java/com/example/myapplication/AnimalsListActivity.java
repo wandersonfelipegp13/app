@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.myapplication.databinding.ActivityAnimalsListBinding;
 import com.example.myapplication.model.Animal;
 import com.example.myapplication.model.AnimalAdapter;
+import com.example.myapplication.util.ToolbarConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,28 +31,10 @@ public class AnimalsListActivity extends AppCompatActivity {
         binding = ActivityAnimalsListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        configureToolbar();
-        configureActionBar();
-        onClickNewAnimal();
-
-    }
-
-    private void configureToolbar() {
-
         Toolbar toolbar = binding.toolbar;
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationOnClickListener(view -> finish());
+        ToolbarConfig.config(this, toolbar);
 
-    }
-
-    private void configureActionBar() {
-
-        ActionBar actionBar = getSupportActionBar();
-
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setDisplayShowTitleEnabled(false);
-        }
+        onClickNewAnimal();
 
     }
 

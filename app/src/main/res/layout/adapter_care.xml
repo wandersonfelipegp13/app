@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:orientation="horizontal"
+        android:padding="@dimen/medium_padding">
+
+        <TextView
+            android:id="@+id/tvCareDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawablePadding="@dimen/small_margin"
+            android:fontFamily="@font/ubuntu_light"
+            android:text="@string/care_date"
+            android:textColor="@color/dark_gray"
+            android:textSize="@dimen/medium_text"
+            android:textStyle="bold"
+            app:drawableStartCompat="@drawable/round_calendar_today_24"
+            app:drawableTint="@color/green_500" />
+
+    </LinearLayout>
+
+</layout>

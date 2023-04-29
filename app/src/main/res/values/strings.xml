@@ -54,7 +54,10 @@
     <string name="producing_status">Situação de Produção</string>
     <string name="producing">Produzindo</string>
     <string name="not_producing">Não produzindo</string>
-
     <string name="production_question">Este animal está produzindo?</string>
+
+    <!-- Care Adapter -->
+    <string name="care_date">Data do cuidado</string>
+    <string name="fab_add_cuidado">Adicionar cuidado</string>
 
 </resources>
