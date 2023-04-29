@@ -12,6 +12,10 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".CareActivity"
+            android:exported="false"
+            android:launchMode="singleTop" />
+        <activity
             android:name=".CareListActivity"
             android:exported="false"
             android:launchMode="singleTop" />

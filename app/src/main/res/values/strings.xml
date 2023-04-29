@@ -58,6 +58,12 @@
 
     <!-- Care Adapter -->
     <string name="care_date">Data do cuidado</string>
+
+    <!-- Care List Activity -->
     <string name="fab_add_cuidado">Adicionar cuidado</string>
+
+    <!-- Care Activity -->
+    <string name="care_desc">Descrição</string>
+    <string name="care_med">Medicamentos</string>
 
 </resources>

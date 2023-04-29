@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +13,6 @@ import com.example.myapplication.model.Care;
 import com.example.myapplication.model.CareAdapter;
 import com.example.myapplication.util.ToolbarConfig;
 
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -70,6 +70,9 @@ public class CareListActivity extends AppCompatActivity {
 
         return ((holder, idx) -> {
 
+            Intent intent = new Intent(CareListActivity.this, CareActivity.class);
+            startActivity(intent);
+
         });
 
     }
@@ -77,6 +80,9 @@ public class CareListActivity extends AppCompatActivity {
     private void onClickNewCare() {
 
         binding.fabAddCare.setOnClickListener(view -> {
+
+            Intent intent = new Intent(CareListActivity.this, CareActivity.class);
+            startActivity(intent);
 
         });
 
