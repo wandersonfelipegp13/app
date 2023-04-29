@@ -66,4 +66,8 @@
     <string name="care_desc">Descrição</string>
     <string name="care_med">Medicamentos</string>
 
+    <!-- Production Activity -->
+    <string name="liters">Litros</string>
+    <string name="date">Data</string>
+
 </resources>
