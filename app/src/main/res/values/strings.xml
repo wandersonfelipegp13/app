@@ -72,5 +72,6 @@
 
     <!-- Production List Activity -->
     <string name="add_production">Adicionar produção</string>
+    <string name="yesterday">Ontem</string>
 
 </resources>

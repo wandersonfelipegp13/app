@@ -43,7 +43,24 @@ public class ProductionListActivity extends AppCompatActivity {
 
         List<Production> productions = new ArrayList<>();
 
-        for (int i = 0; i < 33; i++) {
+        for (int i = 0; i < 11; i++) {
+
+            Date data = new Date();
+            data.setTime(data.getTime() - 100000);
+
+            productions.add(new Production(null, new Random().nextInt(200), data));
+
+        }
+
+        for (int i = 0; i < 3; i++) {
+            Calendar yesterday = Calendar.getInstance();
+            yesterday.set(Calendar.DAY_OF_YEAR, yesterday.get(Calendar.DAY_OF_YEAR) - 1);
+
+            Date data = new Date(yesterday.getTimeInMillis());
+            productions.add(new Production(null, new Random().nextInt(200), data));
+        }
+
+        for (int i = 0; i < 22; i++) {
 
             Calendar calendar = Calendar.getInstance();
 

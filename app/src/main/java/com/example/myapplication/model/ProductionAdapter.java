@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.util.DateComparator;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.text.DateFormat;
@@ -48,15 +49,32 @@ public class ProductionAdapter extends RecyclerView.Adapter<ProductionAdapter.Pr
 
         Production production = productions.get(position);
 
-        String liters = production.getLitros() + " Litros";
+        String liters = production.getLitros() + " " + context.getString(R.string.liters);
         holder.liters.setText(liters);
 
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        holder.date.setText(df.format(production.getData().getTime()));
+        if (DateComparator.isYesterday(production.getData())) {
 
-        if (onClickListener != null) {
-            holder.itemView.setOnClickListener(view -> onClickListener.onClickProduction(holder, position));
+            holder.date.setText(context.getString(R.string.yesterday));
+
+        } else {
+
+            DateFormat df;
+
+            if (DateComparator.isToday(production.getData())) {
+
+                df = new SimpleDateFormat("HH:mm", Locale.getDefault());
+
+            } else {
+
+                df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
+            }
+
+            holder.date.setText(df.format(production.getData().getTime()));
+
         }
+
+        holder.itemView.setOnClickListener(view -> onClickListener.onClickProduction(holder, position));
 
     }
 
