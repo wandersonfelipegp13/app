@@ -52,27 +52,7 @@ public class ProductionAdapter extends RecyclerView.Adapter<ProductionAdapter.Pr
         String liters = production.getLitros() + " " + context.getString(R.string.liters);
         holder.liters.setText(liters);
 
-        if (DateComparator.isYesterday(production.getData())) {
-
-            holder.date.setText(context.getString(R.string.yesterday));
-
-        } else {
-
-            DateFormat df;
-
-            if (DateComparator.isToday(production.getData())) {
-
-                df = new SimpleDateFormat("HH:mm", Locale.getDefault());
-
-            } else {
-
-                df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-
-            }
-
-            holder.date.setText(df.format(production.getData().getTime()));
-
-        }
+        holder.date.setText(DateComparator.toString(context, production.getData()));
 
         holder.itemView.setOnClickListener(view -> onClickListener.onClickProduction(holder, position));
 

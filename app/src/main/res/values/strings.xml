@@ -66,6 +66,11 @@
     <string name="care_desc">Descrição</string>
     <string name="care_med">Medicamentos</string>
 
+    <!-- Production Details Activity -->
+    <string name="production_animal_id">Identificação do animal</string>
+    <string name="production_date">Data da produção</string>
+    <string name="production_liters">Litros produzidos</string>
+
     <!-- Production Activity -->
     <string name="liters">Litros</string>
     <string name="date">Data</string>

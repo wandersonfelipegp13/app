@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -84,6 +85,9 @@ public class ProductionListActivity extends AppCompatActivity {
 
         return ((holder, idx) -> {
 
+            Intent intent = new Intent(ProductionListActivity.this, ProductionDetailsActivity.class);
+            startActivity(intent);
+
         });
 
     }
@@ -91,6 +95,9 @@ public class ProductionListActivity extends AppCompatActivity {
     private void onClickNewProduction() {
 
         binding.fabAddProduction.setOnClickListener(view -> {
+
+            Intent intent = new Intent(ProductionListActivity.this, ProductionFormActivity.class);
+            startActivity(intent);
 
         });
 

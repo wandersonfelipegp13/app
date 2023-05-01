@@ -6,7 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 public class ToolbarConfig {
 
-    public static void config(AppCompatActivity activity, Toolbar toolbar) {
+    public static ActionBar config(AppCompatActivity activity, Toolbar toolbar) {
 
         activity.setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(view -> activity.finish());
@@ -17,6 +17,8 @@ public class ToolbarConfig {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowTitleEnabled(false);
         }
+
+        return actionBar;
 
     }
 
