@@ -35,7 +35,6 @@ public class CareListActivity extends AppCompatActivity {
         Toolbar toolbar = binding.toolbar;
         ActionBar actionBar = ToolbarConfig.config(this, toolbar);
         actionBar.setDisplayShowTitleEnabled(true);
-        actionBar.setTitle(getString(R.string.animal_id));
 
         onClickNewCare();
 
@@ -48,7 +47,26 @@ public class CareListActivity extends AppCompatActivity {
 
         List<Care> careList = new ArrayList<>();
 
-        for (int i = 0; i < 33; i++) {
+        // Today
+        for (int i = 0; i < 5; i++) {
+
+            Date data = new Date();
+            data.setTime(data.getTime() - 100000);
+
+            careList.add(new Care(null, data, null, null));
+
+        }
+
+        // Yesterday
+        for (int i = 0; i < 3; i++) {
+            Calendar yesterday = Calendar.getInstance();
+            yesterday.set(Calendar.DAY_OF_YEAR, yesterday.get(Calendar.DAY_OF_YEAR) - 1);
+
+            Date data = new Date(yesterday.getTimeInMillis());
+            careList.add(new Care(null, data, null, null));
+        }
+
+        for (int i = 0; i < 10; i++) {
 
             Calendar calendar = Calendar.getInstance();
 
@@ -64,8 +82,7 @@ public class CareListActivity extends AppCompatActivity {
 
         binding.rvCare.setLayoutManager(new LinearLayoutManager(CareListActivity.this));
         binding.rvCare.setItemAnimator(new DefaultItemAnimator());
-        CareAdapter careAdapter;
-        binding.rvCare.setAdapter(careAdapter = new CareAdapter(careList, CareListActivity.this, onClickCare()));
+        binding.rvCare.setAdapter(new CareAdapter(careList, CareListActivity.this, onClickCare()));
 
     }
 

@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.myapplication.databinding.ActivitySignUpBinding;
@@ -17,12 +18,15 @@ public class SignUpActivity extends AppCompatActivity {
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        //onClickLogin();
+        onClickSignUp();
 
     }
 
-    /*public void onClickLogin() {
-        binding.btnCancel.setOnClickListener(view -> finish());
-    }*/
+    public void onClickSignUp() {
+        binding.btnSignUp.setOnClickListener(view -> {
+            Intent intent = new Intent(SignUpActivity.this, HomeActivity.class);
+            startActivity(intent);
+        });
+    }
 
 }

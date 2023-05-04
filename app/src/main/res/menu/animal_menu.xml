@@ -3,13 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menuItemEditar"
-        android:title="@string/edit"
+        android:id="@+id/menuItemProducoes"
+        android:title="@string/productions"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/menuItemCuidados"
         android:title="@string/care"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menuItemEditar"
+        android:title="@string/edit"
         app:showAsAction="ifRoom" />
 
     <item

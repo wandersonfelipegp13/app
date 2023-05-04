@@ -7,11 +7,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.myapplication.databinding.ActivityAnimalDetailsBinding;
+import com.example.myapplication.util.AppToast;
 import com.example.myapplication.util.ToolbarConfig;
 
 public class AnimalDetailsActivity extends AppCompatActivity {
@@ -45,9 +45,10 @@ public class AnimalDetailsActivity extends AppCompatActivity {
 
         int id = item.getItemId();
 
-        if (id == R.id.menuItemEditar) {
 
-            Intent intent = new Intent(this, AnimalFormActivity.class);
+        if (id == R.id.menuItemProducoes) {
+
+            Intent intent = new Intent(this, ProductionListActivity.class);
             startActivity(intent);
             return true;
 
@@ -57,8 +58,16 @@ public class AnimalDetailsActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
 
+        } else if (id == R.id.menuItemEditar) {
+
+            Intent intent = new Intent(this, AnimalFormActivity.class);
+            startActivity(intent);
+            return true;
+
         } else if (id == R.id.menuItemExcluir) {
 
+            finish();
+            AppToast.longMsg(this, getString(R.string.animal_deleted));
             return true;
 
         }
@@ -66,4 +75,5 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
+
 }

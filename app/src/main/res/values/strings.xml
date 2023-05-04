@@ -10,6 +10,7 @@
     <string name="cancel">Cancelar</string>
 
     <string name="care">Cuidados</string>
+    <string name="productions">Produções</string>
 
     <!-- Login Activity -->
     <string name="email_input_hint">E-mail</string>
@@ -38,7 +39,7 @@
     <string name="card_births_value">3 nascimentos</string>
 
     <!-- Animals List Activity -->
-    <string name="toolbar_animals_list">53 Animais</string>
+    <string name="toolbar_animals_title">Animais</string>
     <string name="animal_photo">Foto do animal</string>
     <string name="animal_name">Nome do animal</string>
     <string name="fab_add_animal">Adicionar animal</string>
@@ -54,17 +55,24 @@
     <string name="producing_status">Situação de Produção</string>
     <string name="producing">Produzindo</string>
     <string name="not_producing">Não produzindo</string>
+
+    <!-- Animal Form Activity -->
     <string name="production_question">Este animal está produzindo?</string>
+    <string name="animal_deleted">Animal excluído</string>
+    <string name="animal_saved">Animal salvo</string>
 
     <!-- Care Adapter -->
     <string name="care_date">Data do cuidado</string>
 
     <!-- Care List Activity -->
+    <string name="toolbar_care_title">Cuidados</string>
     <string name="fab_add_cuidado">Adicionar cuidado</string>
 
     <!-- Care Activity -->
     <string name="care_desc">Descrição</string>
     <string name="care_med">Medicamentos</string>
+    <string name="care_deleted">Cuidado deletado</string>
+    <string name="care_saved">Cuidado salvo</string>
 
     <!-- Production Details Activity -->
     <string name="production_animal_id">Identificação do animal</string>
@@ -76,7 +84,15 @@
     <string name="date">Data</string>
 
     <!-- Production List Activity -->
+    <string name="toolbar_production_title">Produções</string>
     <string name="add_production">Adicionar produção</string>
     <string name="yesterday">Ontem</string>
+
+    <!-- Production Form Activity -->
+    <string name="production_saved">Produção salva</string>
+    <string name="production_deleted">Produção excluída</string>
+
+    <string name="search_animal">Buscar animal</string>
+    <string name="select_animal">Selecione o animal</string>
 
 </resources>

@@ -5,21 +5,4 @@
         <item name="cornerSize">50%</item>
     </style>
 
-    <style name="Forms">
-        <item name="android:layout_marginStart">@dimen/medium_margin</item>
-        <item name="android:layout_marginEnd">@dimen/medium_margin</item>
-        <item name="hintTextColor">@color/dark_gray</item>
-        <item name="startIconTint">@color/dark_gray</item>
-    </style>
-
-    <style name="TextButtons">
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-        <item name="android:background">?android:attr/selectableItemBackground</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:gravity">center</item>
-        <item name="textAllCaps">true</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
 </resources>

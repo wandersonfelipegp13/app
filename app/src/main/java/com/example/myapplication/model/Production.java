@@ -1,5 +1,7 @@
 package com.example.myapplication.model;
 
+import androidx.annotation.NonNull;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -55,6 +57,7 @@ public class Production {
         return Objects.hash(id);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Production{" +

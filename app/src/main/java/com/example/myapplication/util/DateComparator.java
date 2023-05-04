@@ -43,7 +43,7 @@ public abstract class DateComparator {
 
     }
 
-    public static String toString(Context context, Date date) {
+    public static String dateToString(Context context, Date date) {
 
         if (isYesterday(date)) {
 

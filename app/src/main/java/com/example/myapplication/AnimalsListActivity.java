@@ -21,7 +21,6 @@ public class AnimalsListActivity extends AppCompatActivity {
 
     private ActivityAnimalsListBinding binding;
     private List<Animal> animals;
-    private AnimalAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +47,12 @@ public class AnimalsListActivity extends AppCompatActivity {
             animals.add(new Animal(UUID.randomUUID().toString().substring(0, 13), null, null, 0.0, null, false, null));
         }
 
-        binding.tvAnimalsNumber.setText(animals.size() + " Animais");
+        binding.toolbar.setTitle(animals.size() + " " + getString(R.string.toolbar_animals_title));
 
         binding.rvAnimals.setLayoutManager(new LinearLayoutManager(AnimalsListActivity.this));
         binding.rvAnimals.setItemAnimator(new DefaultItemAnimator());
-        binding.rvAnimals.setAdapter(adapter = new AnimalAdapter(animals, AnimalsListActivity.this, onClickAnimal()));
+        binding.rvAnimals.setAdapter(new AnimalAdapter(animals,
+                AnimalsListActivity.this, onClickAnimal()));
 
     }
 

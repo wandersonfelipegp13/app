@@ -11,57 +11,40 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
-        android:paddingHorizontal="@dimen/medium_padding"
-        android:paddingVertical="@dimen/small_padding">
+        android:padding="@dimen/medium_padding">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/sivProdAnimalPhoto"
-            android:layout_width="@dimen/medium_image"
-            android:layout_height="@dimen/medium_image"
+        <ImageView
+            android:id="@+id/animalPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:contentDescription="@string/animal_photo"
-            android:scaleType="fitCenter"
-            android:src="@color/green_500"
-            app:shapeAppearanceOverlay="@style/AnimalPhoto" />
+            android:src="@drawable/round_calendar_today_24"
+            app:tint="@color/green_500" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_weight="1"
-                android:orientation="vertical"
+            <TextView
+                android:id="@+id/tvLiters"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/tvProdAnimalName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/medium_margin"
-                    android:fontFamily="@font/ubuntu_light"
-                    android:text="@string/animal_name"
-                    android:textColor="@color/dark_gray"
-                    android:textSize="@dimen/medium_text"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvLiters"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/medium_margin"
-                    android:fontFamily="@font/ubuntu_light"
-                    android:text="@string/liters"
-                    android:textColor="@color/dark_gray"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/medium_margin"
+                android:layout_weight="1"
+                android:fontFamily="@font/ubuntu_light"
+                android:text="@string/liters"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/medium_text"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvProdDate"
-                android:layout_gravity="end|top"
-                android:text="@string/date"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:fontFamily="@font/ubuntu_light"
+                android:text="@string/date"
+                android:textStyle="normal" />
 
         </LinearLayout>
 

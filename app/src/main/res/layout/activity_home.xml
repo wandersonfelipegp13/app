@@ -76,18 +76,6 @@
                     app:drawableTopCompat="@drawable/vaca" />
 
                 <TextView
-                    android:id="@+id/tvProductions"
-                    android:layout_columnWeight="1"
-                    android:drawablePadding="@dimen/small_margin"
-                    android:fontFamily="@font/ubuntu_light"
-                    android:text="@string/button_production"
-                    android:textAlignment="center"
-                    android:textColor="@color/dark_gray"
-                    android:textStyle="bold"
-                    app:drawableTint="@color/green_500"
-                    app:drawableTopCompat="@drawable/balde" />
-
-                <TextView
                     android:layout_columnWeight="1"
                     android:drawablePadding="@dimen/small_margin"
                     android:fontFamily="@font/ubuntu_light"

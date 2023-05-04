@@ -11,12 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.util.DateComparator;
-import com.google.android.material.imageview.ShapeableImageView;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 
 public class ProductionAdapter extends RecyclerView.Adapter<ProductionAdapter.ProductionsViewHolder> {
 
@@ -52,7 +48,7 @@ public class ProductionAdapter extends RecyclerView.Adapter<ProductionAdapter.Pr
         String liters = production.getLitros() + " " + context.getString(R.string.liters);
         holder.liters.setText(liters);
 
-        holder.date.setText(DateComparator.toString(context, production.getData()));
+        holder.date.setText(DateComparator.dateToString(context, production.getData()));
 
         holder.itemView.setOnClickListener(view -> onClickListener.onClickProduction(holder, position));
 
@@ -65,8 +61,6 @@ public class ProductionAdapter extends RecyclerView.Adapter<ProductionAdapter.Pr
 
     public static class ProductionsViewHolder extends RecyclerView.ViewHolder {
 
-        public ShapeableImageView animalPhoto;
-        public TextView animalName;
         public TextView liters;
         public TextView date;
         public View view;
@@ -74,8 +68,6 @@ public class ProductionAdapter extends RecyclerView.Adapter<ProductionAdapter.Pr
         public ProductionsViewHolder(View view) {
             super(view);
             this.view = view;
-            this.animalPhoto = (ShapeableImageView) view.findViewById(R.id.sivProdAnimalPhoto);
-            this.animalName = (TextView) view.findViewById(R.id.tvProdAnimalName);
             this.liters = (TextView) view.findViewById(R.id.tvLiters);
             this.date = (TextView) view.findViewById(R.id.tvProdDate);
         }

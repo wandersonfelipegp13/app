@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -31,7 +32,8 @@ public class ProductionListActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         Toolbar toolbar = binding.toolbar;
-        ToolbarConfig.config(this, toolbar);
+        ActionBar actionBar = ToolbarConfig.config(this, toolbar);
+        actionBar.setDisplayShowTitleEnabled(true);
 
         onClickNewProduction();
 
@@ -85,7 +87,7 @@ public class ProductionListActivity extends AppCompatActivity {
 
         return ((holder, idx) -> {
 
-            Intent intent = new Intent(ProductionListActivity.this, ProductionDetailsActivity.class);
+            Intent intent = new Intent(ProductionListActivity.this, ProductionFormActivity.class);
             startActivity(intent);
 
         });

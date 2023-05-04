@@ -1,5 +1,7 @@
 package com.example.myapplication.model;
 
+import androidx.annotation.NonNull;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -95,6 +97,7 @@ public class Animal {
         return Objects.hash(identificacao);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Animal{" +

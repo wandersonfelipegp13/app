@@ -1,9 +1,9 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.databinding.ActivityHomeBinding;
 
@@ -19,7 +19,6 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         onClickAnimalsList();
-        onClickProductionList();
 
     }
 
@@ -28,17 +27,6 @@ public class HomeActivity extends AppCompatActivity {
         binding.tvAnimals.setOnClickListener(view -> {
 
             Intent intent = new Intent(this, AnimalsListActivity.class);
-            startActivity(intent);
-
-        });
-
-    }
-
-    private void onClickProductionList() {
-
-        binding.tvProductions.setOnClickListener(view -> {
-
-            Intent intent = new Intent(this, ProductionListActivity.class);
             startActivity(intent);
 
         });

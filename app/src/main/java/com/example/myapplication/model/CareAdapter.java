@@ -10,11 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.util.DateComparator;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.Locale;
 
 public class CareAdapter extends RecyclerView.Adapter<CareAdapter.CareViewHolder> {
 
@@ -47,9 +45,7 @@ public class CareAdapter extends RecyclerView.Adapter<CareAdapter.CareViewHolder
 
         Care care = careList.get(position);
 
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-
-        holder.data.setText(df.format(care.getData().getTime()));
+        holder.data.setText(DateComparator.dateToString(context, care.getData()));
 
         if (onClickListener != null) {
             holder.itemView.setOnClickListener(view -> onClickListener.onClickCare(holder, position));
