@@ -76,6 +76,7 @@
                     app:drawableTopCompat="@drawable/vaca" />
 
                 <TextView
+                    android:id="@+id/tvReport"
                     android:layout_columnWeight="1"
                     android:drawablePadding="@dimen/small_margin"
                     android:fontFamily="@font/ubuntu_light"

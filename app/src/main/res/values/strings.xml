@@ -95,4 +95,20 @@
     <string name="search_animal">Buscar animal</string>
     <string name="select_animal">Selecione o animal</string>
 
+    <!-- Report Activity -->
+    <string name="toolbar_report_title">Relatório</string>
+    <string name="generate">Gerar</string>
+    <string name="hint_initial_date">Do dia</string>
+    <string name="hint_final_date">Até o dia</string>
+
+    <string name="report_placeholder">0</string>
+    <string name="report_total_production">Produção total</string>
+    <string name="report_daily_average">Média diária</string>
+    <string name="report_cows_producing">Vacas produzindo</string>
+    <string name="report_cow_average">Média por vaca</string>
+    <string name="report_cow_produced_most">Vaca que mais produziu</string>
+    <string name="report_cow_produced_least">Vaca que menos produziu</string>
+    <string name="report_care">Cuidados</string>
+    <string name="report_births">Nascimentos</string>
+
 </resources>
