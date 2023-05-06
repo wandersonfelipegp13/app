@@ -2,6 +2,13 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.LinearLayout;
+import android.widget.SearchView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -11,7 +18,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.myapplication.databinding.ActivityAnimalsListBinding;
 import com.example.myapplication.model.Animal;
 import com.example.myapplication.model.AnimalAdapter;
+import com.example.myapplication.util.AppToast;
 import com.example.myapplication.util.ToolbarConfig;
+import com.google.android.material.textview.MaterialTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +42,33 @@ public class AnimalsListActivity extends AppCompatActivity {
         ToolbarConfig.config(this, toolbar);
 
         onClickNewAnimal();
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.search_animal_menu, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.search_animal);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                AppToast.shorMsg(AnimalsListActivity.this, "Buscando "
+                        + query.trim());
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        return true;
 
     }
 
