@@ -6,26 +6,28 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.myapplication.databinding.ActivityAnimalFormBinding;
+import com.example.myapplication.databinding.ActivityProfileBinding;
 import com.example.myapplication.util.AppToast;
 import com.example.myapplication.util.ToolbarConfig;
 
-public class AnimalFormActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
 
-    private ActivityAnimalFormBinding binding;
+    private ActivityProfileBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        binding = ActivityAnimalFormBinding.inflate(getLayoutInflater());
+        binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         Toolbar toolbar = binding.toolbar;
-        ToolbarConfig.config(this, toolbar);
+        ActionBar actionBar = ToolbarConfig.config(this, toolbar);
+        actionBar.setDisplayShowTitleEnabled(true);
 
     }
 
@@ -45,8 +47,7 @@ public class AnimalFormActivity extends AppCompatActivity {
 
         if (id == R.id.save) {
 
-            finish();
-            AppToast.longMsg(this, getString(R.string.animal_saved));
+            AppToast.longMsg(this, getString(R.string.name_updated));
             return true;
 
         }

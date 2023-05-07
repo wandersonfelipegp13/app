@@ -100,7 +100,6 @@
     <string name="generate">Gerar</string>
     <string name="hint_initial_date">Do dia</string>
     <string name="hint_final_date">Até o dia</string>
-
     <string name="report_placeholder">0</string>
     <string name="report_total_production">Produção total</string>
     <string name="report_daily_average">Média diária</string>
@@ -110,5 +109,13 @@
     <string name="report_cow_produced_least">Vaca que menos produziu</string>
     <string name="report_care">Cuidados</string>
     <string name="report_births">Nascimentos</string>
+
+    <!-- Profile Activity -->
+    <string name="toolbar_title_profile">Perfil</string>
+    <string name="name_updated">Nome atualizado</string>
+    <string name="redefine_password">Redefinir Senha</string>
+    <string name="redefine_email">Alterar E-mail</string>
+    <string name="delete_account">Deletar minha Conta</string>
+    <string name="exit">Sair</string>
 
 </resources>

@@ -20,6 +20,7 @@ public class HomeActivity extends AppCompatActivity {
 
         onClickAnimalsList();
         onClickReport();
+        onClickProfile();
 
     }
 
@@ -39,6 +40,17 @@ public class HomeActivity extends AppCompatActivity {
         binding.tvReport.setOnClickListener(view -> {
 
             Intent intent = new Intent(this, ReportActivity.class);
+            startActivity(intent);
+
+        });
+
+    }
+
+    private void onClickProfile() {
+
+        binding.tvSettings.setOnClickListener(view -> {
+
+            Intent intent = new Intent(this, ProfileActivity.class);
             startActivity(intent);
 
         });
