@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.util.DateComparator;
+import com.example.myapplication.util.DateUtils;
 
 import java.util.List;
 
@@ -19,7 +19,6 @@ public class ProductionAdapter extends RecyclerView.Adapter<ProductionAdapter.Pr
     private final List<Production> productions;
     private final Context context;
     private final ProductionOnClickListener onClickListener;
-
 
     public interface ProductionOnClickListener {
 
@@ -48,7 +47,7 @@ public class ProductionAdapter extends RecyclerView.Adapter<ProductionAdapter.Pr
         String liters = production.getLitros() + " " + context.getString(R.string.liters);
         holder.liters.setText(liters);
 
-        holder.date.setText(DateComparator.dateToString(context, production.getData()));
+        holder.date.setText(DateUtils.dateToString(context, production.getData()));
 
         holder.itemView.setOnClickListener(view -> onClickListener.onClickProduction(holder, position));
 

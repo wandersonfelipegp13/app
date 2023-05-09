@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public abstract class DateComparator {
+public abstract class DateUtils {
 
     public static boolean isSameDay(Date firstDate, Date secondDate) {
 
@@ -45,28 +45,41 @@ public abstract class DateComparator {
 
     public static String dateToString(Context context, Date date) {
 
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+
         if (isYesterday(date)) {
 
             return context.getString(R.string.yesterday);
 
+        } else if (isToday(date)) {
+
+            return timeToString(calendar);
+
         } else {
 
-            DateFormat df;
-
-            if (isToday(date)) {
-
-                df = new SimpleDateFormat("HH:mm", Locale.getDefault());
-
-            } else {
-
-                df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-
-            }
-
-            return df.format(date.getTime());
+            return dateToString(calendar);
 
         }
 
+    }
+
+    public static String dateToString(Calendar calendar) {
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        return df.format(calendar.getTime());
+
+    }
+
+    public static String timeToString(Calendar calendar) {
+
+        DateFormat df = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        return df.format(calendar.getTime());
+
+    }
+
+    public static void correctDatePickerDate(Calendar calendar) {
+        calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + 1);
     }
 
 }

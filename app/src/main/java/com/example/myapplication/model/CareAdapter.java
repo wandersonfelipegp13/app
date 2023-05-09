@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
-import com.example.myapplication.util.DateComparator;
+import com.example.myapplication.util.DateUtils;
 
 import java.util.List;
 
@@ -19,7 +19,6 @@ public class CareAdapter extends RecyclerView.Adapter<CareAdapter.CareViewHolder
     private final List<Care> careList;
     private final Context context;
     private final CareOnClickListener onClickListener;
-
 
     public interface CareOnClickListener {
 
@@ -45,7 +44,7 @@ public class CareAdapter extends RecyclerView.Adapter<CareAdapter.CareViewHolder
 
         Care care = careList.get(position);
 
-        holder.data.setText(DateComparator.dateToString(context, care.getData()));
+        holder.data.setText(DateUtils.dateToString(context, care.getData()));
 
         if (onClickListener != null) {
             holder.itemView.setOnClickListener(view -> onClickListener.onClickCare(holder, position));

@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.myapplication.databinding.ActivityProductionFormBinding;
 import com.example.myapplication.util.AppToast;
+import com.example.myapplication.util.DateUtils;
 import com.example.myapplication.util.DateValidatorNoFuture;
 import com.example.myapplication.util.ToolbarConfig;
 import com.google.android.material.datepicker.CalendarConstraints;
@@ -18,17 +19,12 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class ProductionFormActivity extends AppCompatActivity {
 
     private ActivityProductionFormBinding binding;
-    private Calendar now;
-    private int currentHour;
-    private int currentMin;
+    private Calendar date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +36,31 @@ public class ProductionFormActivity extends AppCompatActivity {
         Toolbar toolbar = binding.toolbar;
         ToolbarConfig.config(this, toolbar);
 
-        now = Calendar.getInstance();
-        currentHour = now.get(Calendar.HOUR_OF_DAY);
-        currentMin = now.get(Calendar.MINUTE);
+        date = Calendar.getInstance();
+        changeDate(date);
+        changeTime(date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE));
 
         onClickSelectProductionDate();
         onClickSelectProductionTime();
 
     }
 
-    private void onClickSelectProductionDate() {
+    private void changeDate(Calendar date) {
 
-        showProductionDate(now);
+        this.date = date;
+        binding.tvDataProd.setText(DateUtils.dateToString(date));
+
+    }
+
+    private void changeTime(int hour, int min) {
+
+        date.set(Calendar.HOUR_OF_DAY, hour);
+        date.set(Calendar.MINUTE, min);
+        binding.tvTimeProd.setText(DateUtils.timeToString(date));
+
+    }
+
+    private void onClickSelectProductionDate() {
 
         binding.llSelectDate.setOnClickListener(view -> {
 
@@ -71,10 +80,10 @@ public class ProductionFormActivity extends AppCompatActivity {
 
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(selection);
-                calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + 1);
 
-                DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                binding.tvDataProd.setText(df.format(calendar.getTime()));
+                DateUtils.correctDatePickerDate(calendar);
+
+                changeDate(calendar);
 
             });
 
@@ -84,41 +93,24 @@ public class ProductionFormActivity extends AppCompatActivity {
 
     }
 
-    private void showProductionDate(Calendar date) {
-
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        binding.tvDataProd.setText(df.format(date.getTime()));
-
-    }
-
     private void onClickSelectProductionTime() {
-
-        showProductionTime(currentHour, currentMin);
 
         binding.llSelectTime.setOnClickListener(view -> {
 
             MaterialTimePicker timePicker = new MaterialTimePicker.Builder()
                     .setTimeFormat(TimeFormat.CLOCK_24H)
-                    .setHour(currentHour)
-                    .setMinute(currentMin)
-                    .setTitleText("Selecione a hora da produção")
+                    .setHour(date.get(Calendar.HOUR_OF_DAY))
+                    .setMinute(date.get(Calendar.MINUTE))
+                    .setTitleText(getString(R.string.production_hour_select))
                     .build();
 
             timePicker.show(getSupportFragmentManager(), "tag");
 
             timePicker.addOnPositiveButtonClickListener(view1 ->
-                    showProductionTime(timePicker.getHour(), timePicker.getMinute())
+                    changeTime(timePicker.getHour(), timePicker.getMinute())
             );
 
         });
-
-    }
-
-    private void showProductionTime(int hour, int min) {
-
-        String time = String.format(Locale.getDefault(), "%02d", hour) + ":"
-                + String.format(Locale.getDefault(), "%02d", min);
-        binding.tvTimeProd.setText(time);
 
     }
 
