@@ -8,6 +8,7 @@
     <string name="save">Salvar</string>
     <string name="delete">Excluir</string>
     <string name="cancel">Cancelar</string>
+    <string name="date_format">dd/mm/aaaa</string>
 
     <string name="care">Cuidados</string>
     <string name="productions">Produções</string>
@@ -57,6 +58,8 @@
     <string name="not_producing">Não produzindo</string>
 
     <!-- Animal Form Activity -->
+    <string name="animal_birth_not_selected">Selecionar data</string>
+    <string name="animal_birth_delete_question">Excluir data de nascimento?</string>
     <string name="production_question">Este animal está produzindo?</string>
     <string name="animal_deleted">Animal excluído</string>
     <string name="animal_saved">Animal salvo</string>
