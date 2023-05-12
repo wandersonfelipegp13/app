@@ -49,6 +49,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/titName"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="@string/name_input_hint"
@@ -127,7 +128,7 @@
                     android:layout_marginBottom="@dimen/medium_margin"
                     android:drawablePadding="@dimen/medium_margin"
                     android:paddingVertical="@dimen/medium_padding"
-                    android:text="@string/exit"
+                    android:text="@string/sign_out"
                     android:textColor="@color/red"
                     app:drawableStartCompat="@drawable/outline_exit_to_app_24"
                     app:drawableTint="@color/red"

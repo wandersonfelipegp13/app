@@ -18,11 +18,21 @@
     <string name="password_input_hint">Senha</string>
     <string name="button_sign_in">Entrar</string>
     <string name="sign_up">Criar conta</string>
+    <string name="sign_in_error">Não foi possível entrar na sua conta. Tente novamente</string>
 
     <!-- SignUp Activity -->
     <string name="name_input_hint">Nome</string>
     <string name="confirm_password_input_hint">Confirme sua Senha</string>
     <string name="button_sign_up">Cadastrar-se</string>
+    <string name="error_sign_up">Não foi possível criar sua conta. Tente novamente.</string>
+
+    <!-- Email Verification Activity -->
+    <string name="check_email_title">Verifique seu email</string>
+    <string name="check_email_message">Foi enviado um email de verificação para:</string>
+    <string name="your_email">Seu e-mail.</string>
+    <string name="check_email_continue">Acesse o link de confirmação no e-mail e então click em Entrar, para acessar sua conta.</string>
+    <string name="account_deleted">Sua conta foi excluída</string>
+    <string name="account_delete_error">Não foi possível sua excluir sua conta. Tente novamente.</string>
 
     <!-- Home Activity -->
     <string name="user_name">Nome do Produtor</string>
@@ -122,6 +132,14 @@
     <string name="redefine_password">Redefinir Senha</string>
     <string name="redefine_email">Alterar E-mail</string>
     <string name="delete_account">Deletar minha Conta</string>
-    <string name="exit">Sair</string>
+    <string name="sign_out">Sair</string>
+    <string name="confirm_sign_out">Sair da sua conta?</string>
+    <string name="finish_sign_up">Finalizar cadastro</string>
+    <string name="inform_your_name">Informe seu nome</string>
+    <string name="inform_valid_email">Informe um email válido</string>
+    <string name="inform_password">Informe uma senha</string>
+    <string name="confirm_password">Confirme sua senha</string>
+    <string name="passwords_not_match">As senhas não conferem</string>
+    <string name="error_update_name">Não foi possível atualizar seu nome. Tente novamente.</string>
 
 </resources>
