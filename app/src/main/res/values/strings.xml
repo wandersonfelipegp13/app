@@ -24,6 +24,12 @@
     <string name="confirm_password_input_hint">Confirme sua Senha</string>
     <string name="button_sign_up">Cadastrar-se</string>
 
+    <!-- Email Verification Activity -->
+    <string name="check_email_title">Verifique seu email</string>
+    <string name="check_email_message">Foi enviado um email de verificação para:</string>
+    <string name="your_email">Seu e-mail.</string>
+    <string name="check_email_continue">Acesse o link de confirmação no e-mail e então click em Entrar, para acessar sua conta.</string>
+
     <!-- Home Activity -->
     <string name="user_name">Nome do Produtor</string>
     <string name="button_animals">Animais</string>
@@ -122,6 +128,7 @@
     <string name="redefine_password">Redefinir Senha</string>
     <string name="redefine_email">Alterar E-mail</string>
     <string name="delete_account">Deletar minha Conta</string>
-    <string name="exit">Sair</string>
+    <string name="sign_out">Sair</string>
+    <string name="confirm_sign_out">Sair da sua conta?</string>
 
 </resources>

@@ -27,7 +27,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilNome"
+                android:id="@+id/tilEmail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -38,25 +38,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvLogo">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/name_input_hint"
-                    android:inputType="textPersonName" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilEmail"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small_margin"
-                android:minEms="18"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tilNome">
-
-                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/titEmail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/email_input_hint"
@@ -77,6 +59,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tilEmail">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/titPass"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/password_input_hint"
@@ -98,6 +81,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tilPass">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/titConfirmPass"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/confirm_password_input_hint"

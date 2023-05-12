@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".EmailVerificationActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:text="@string/app_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:fontFamily="@font/ubuntu_light"
+                android:text="@string/check_email_title"
+                android:textSize="@dimen/medium_text"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLogo" />
+
+            <TextView
+                android:id="@+id/tvMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/ubuntu_light"
+                android:lineSpacingExtra="@dimen/extra_small_margin"
+                android:minWidth="320dp"
+                android:text="@string/check_email_message"
+                android:textSize="@dimen/medium_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/extra_small_margin"
+                android:fontFamily="@font/ubuntu_light"
+                android:lineSpacingExtra="@dimen/extra_small_margin"
+                android:maxWidth="320dp"
+                android:text="@string/email_input_hint"
+                android:textSize="@dimen/medium_text"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/tvMessage"
+                app:layout_constraintStart_toStartOf="@id/tvMessage"
+                app:layout_constraintTop_toBottomOf="@+id/tvMessage" />
+
+            <TextView
+                android:id="@+id/tvContinue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/extra_small_margin"
+                android:fontFamily="@font/ubuntu_light"
+                android:lineSpacingExtra="@dimen/extra_small_margin"
+                android:text="@string/check_email_continue"
+                android:textSize="@dimen/medium_text"
+                app:layout_constraintEnd_toEndOf="@+id/tvMessage"
+                app:layout_constraintStart_toStartOf="@id/tvMessage"
+                app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnExit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:fontFamily="@font/ubuntu_light"
+                android:text="@string/button_sign_in"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tvContinue"
+                app:layout_constraintTop_toBottomOf="@+id/tvContinue" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDeleteAcc"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/medium_margin"
+                android:fontFamily="@font/ubuntu_light"
+                android:padding="0dp"
+                android:text="@string/delete_account"
+                android:textAllCaps="false"
+                android:textColor="@color/red"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/tvMessage"
+                app:layout_constraintTop_toBottomOf="@+id/tvContinue" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

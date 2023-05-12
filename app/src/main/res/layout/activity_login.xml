@@ -38,6 +38,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvLogo">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/titEmail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/email_input_hint"
@@ -59,6 +60,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tilEmail">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/titPass"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/password_input_hint"

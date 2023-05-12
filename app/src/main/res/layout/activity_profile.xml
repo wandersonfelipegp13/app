@@ -127,7 +127,7 @@
                     android:layout_marginBottom="@dimen/medium_margin"
                     android:drawablePadding="@dimen/medium_margin"
                     android:paddingVertical="@dimen/medium_padding"
-                    android:text="@string/exit"
+                    android:text="@string/sign_out"
                     android:textColor="@color/red"
                     app:drawableStartCompat="@drawable/outline_exit_to_app_24"
                     app:drawableTint="@color/red"
