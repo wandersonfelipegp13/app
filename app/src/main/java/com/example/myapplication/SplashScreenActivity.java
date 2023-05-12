@@ -6,12 +6,11 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.example.myapplication.service.UserService;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    private FirebaseUser user;
+    private UserService userService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +18,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
+        userService = new UserService();
 
     }
 
@@ -35,10 +33,10 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
 
-            if (user != null && !user.isEmailVerified()) {
-                intent = new Intent(SplashScreenActivity.this, EmailVerificationActivity.class);
-            } else if (user != null && user.isEmailVerified()) {
+            if (userService.isSignedIn() && userService.isEmailVerified()) {
                 intent = new Intent(SplashScreenActivity.this, HomeActivity.class);
+            } else if (userService.isSignedIn() && !userService.isEmailVerified()) {
+                intent = new Intent(SplashScreenActivity.this, EmailVerificationActivity.class);
             }
 
             startActivity(intent);

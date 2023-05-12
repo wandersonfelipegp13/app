@@ -6,16 +6,15 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.databinding.ActivityLoginBinding;
+import com.example.myapplication.service.UserService;
 import com.example.myapplication.util.AppToast;
 import com.example.myapplication.util.InputValidator;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
     private FirebaseAuth auth;
-    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +33,12 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnSignIn.setOnClickListener(view -> {
 
             if (!InputValidator.isValid(binding.titEmail)) {
-                AppToast.shorMsg(LoginActivity.this, "Informe um email válido");
+                AppToast.shorMsg(LoginActivity.this, getString(R.string.inform_valid_email));
                 return;
             }
 
             if (!InputValidator.isValid(binding.titPass)) {
-                AppToast.shorMsg(LoginActivity.this, "Informe sua senha");
+                AppToast.shorMsg(LoginActivity.this, getString(R.string.inform_password));
                 return;
             }
 
@@ -48,27 +47,25 @@ public class LoginActivity extends AppCompatActivity {
 
             auth = FirebaseAuth.getInstance();
 
-            auth.signInWithEmailAndPassword(email, password)
-                    .addOnSuccessListener(authResult -> {
-
-                        user = auth.getCurrentUser();
-
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-
-                        if (user != null && !user.isEmailVerified()) {
-                            intent = new Intent(LoginActivity.this, EmailVerificationActivity.class);
-                        }
-
-                        startActivity(intent);
-                        finish();
-
-                    })
-                    .addOnFailureListener(e ->
-                            AppToast.shorMsg(LoginActivity.this, "Falha ao entrar na conta")
-                    );
-
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    redirectUser();
+                } else {
+                    AppToast.shorMsg(LoginActivity.this, getString(R.string.sign_in_error));
+                }
+            });
         });
 
+    }
+
+    private void redirectUser() {
+        UserService userService = new UserService();
+        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        if (userService.isSignedIn() && !userService.isEmailVerified()) {
+            intent = new Intent(LoginActivity.this, EmailVerificationActivity.class);
+        }
+        startActivity(intent);
+        finish();
     }
 
     private void onClickSignUp() {

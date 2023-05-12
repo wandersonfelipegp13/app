@@ -6,15 +6,15 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.databinding.ActivityEmailVerificationBinding;
+import com.example.myapplication.service.UserService;
 import com.example.myapplication.util.AppToast;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class EmailVerificationActivity extends AppCompatActivity {
 
     private ActivityEmailVerificationBinding binding;
     private FirebaseAuth auth;
-    private FirebaseUser user;
+    private UserService userService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class EmailVerificationActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
+        userService = new UserService();
 
         concatWithUserEmail();
         onClickDeleteAccount();
@@ -33,28 +33,22 @@ public class EmailVerificationActivity extends AppCompatActivity {
     }
 
     private void concatWithUserEmail() {
-
-        String email;
-
-        if (user != null && user.getEmail() != null) {
-            email = user.getEmail();
+        if (userService.isSignedIn()) {
+            binding.tvEmail.setText(userService.getEmail());
         } else {
-            email = getString(R.string.your_email);
+            binding.tvEmail.setText(getString(R.string.your_email));
         }
-
-        binding.tvEmail.setText(email);
-
     }
 
     private void onClickDeleteAccount() {
         binding.btnDeleteAcc.setOnClickListener(view ->
-                user.delete().addOnSuccessListener(unused -> {
-                    AppToast.longMsg(EmailVerificationActivity.this, "Conta excluída");
+                userService.delete().addOnSuccessListener(unused -> {
+                    AppToast.longMsg(EmailVerificationActivity.this, getString(R.string.account_deleted));
                     auth.signOut();
                     backToLogin();
                 }).addOnFailureListener(e ->
                         AppToast.longMsg(EmailVerificationActivity.this,
-                                "Erro ao excluir sua conta")
+                                getString(R.string.account_delete_error))
                 ));
     }
 

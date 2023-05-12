@@ -6,14 +6,16 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.databinding.ActivitySignUpBinding;
+import com.example.myapplication.service.UserService;
 import com.example.myapplication.util.AppToast;
 import com.example.myapplication.util.InputValidator;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpActivity extends AppCompatActivity {
 
     private ActivitySignUpBinding binding;
+    private UserService userService;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +23,8 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        auth = FirebaseAuth.getInstance();
 
         onClickSignUp();
 
@@ -30,51 +34,48 @@ public class SignUpActivity extends AppCompatActivity {
 
         binding.btnSignUp.setOnClickListener(view -> {
 
+            if (!InputValidator.isValid(binding.titName)) {
+                AppToast.shorMsg(SignUpActivity.this, getString(R.string.inform_your_name));
+                return;
+            }
+
             if (!InputValidator.isValid(binding.titEmail)) {
-                AppToast.shorMsg(SignUpActivity.this, "Informe um email válido");
+                AppToast.shorMsg(SignUpActivity.this, getString(R.string.inform_valid_email));
                 return;
             }
 
             if (!InputValidator.isValid(binding.titPass)) {
-                AppToast.shorMsg(SignUpActivity.this, "Informe uma senha");
+                AppToast.shorMsg(SignUpActivity.this, getString(R.string.inform_password));
                 return;
             }
 
             if (!InputValidator.isValid(binding.titConfirmPass)) {
-                AppToast.shorMsg(SignUpActivity.this, "Confirme sua senha");
+                AppToast.shorMsg(SignUpActivity.this,  getString(R.string.confirm_password));
                 return;
             }
 
+            String name = binding.titName.getText().toString();
             String email = binding.titEmail.getText().toString();
             String password = binding.titPass.getText().toString();
             String confirmedPassword = binding.titConfirmPass.getText().toString();
 
             if (!password.equals(confirmedPassword)) {
-                AppToast.shorMsg(SignUpActivity.this, "As senhas não conferem");
+                AppToast.shorMsg(SignUpActivity.this, getString(R.string.passwords_not_match));
                 return;
             }
 
-            FirebaseAuth auth = FirebaseAuth.getInstance();
-            auth.useAppLanguage();
-
-            auth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, task -> {
-                        if (task.isSuccessful()) {
-
-                            FirebaseUser user = auth.getCurrentUser();
-
-                            if (user != null) {
-                                user.sendEmailVerification();
-                                Intent intent = new Intent(SignUpActivity.this, EmailVerificationActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }
-
-                        } else {
-                            AppToast.longMsg(SignUpActivity.this, "Erro ao entrar no app");
-                        }
-
-                    });
+            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                if(task.isSuccessful()) {
+                    userService = new UserService();
+                    userService.updateName(name);
+                    userService.sendEmailVerification();
+                    Intent intent = new Intent(SignUpActivity.this, EmailVerificationActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    AppToast.longMsg(SignUpActivity.this, getString(R.string.error_sign_up));
+                }
+            });
 
         });
     }
