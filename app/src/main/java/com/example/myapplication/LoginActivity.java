@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -23,8 +24,12 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        auth = FirebaseAuth.getInstance();
+        auth.useAppLanguage();
+
         onClickLogin();
         onClickSignUp();
+        onClickResetPassword();
 
     }
 
@@ -44,8 +49,6 @@ public class LoginActivity extends AppCompatActivity {
 
             String email = binding.titEmail.getText().toString();
             String password = binding.titPass.getText().toString();
-
-            auth = FirebaseAuth.getInstance();
 
             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
@@ -72,6 +75,33 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnSignUp.setOnClickListener(view -> {
             Intent intent = new Intent(this, SignUpActivity.class);
             startActivity(intent);
+        });
+    }
+
+    private void onClickResetPassword() {
+        binding.tvResetPass.setOnClickListener(view -> {
+
+            if (!InputValidator.isValid(binding.titEmail)) {
+                AppToast.shorMsg(LoginActivity.this, getString(R.string.inform_email_reset));
+                return;
+            }
+
+            AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+            builder.setTitle(getString(R.string.password_reset_sent_title));
+            builder.setMessage(getString(R.string.password_reset_email));
+            builder.setPositiveButton(R.string.yes, (dialog, id) ->
+                    auth.sendPasswordResetEmail(binding.titEmail.getText().toString())
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    AppToast.longMsg(LoginActivity.this, getString(R.string.password_reset_sent));
+                                } else {
+                                    AppToast.longMsg(LoginActivity.this, getString(R.string.password_reset_fail));
+                                }
+                            })
+            );
+            builder.setNegativeButton(R.string.cancel, (dialog, id) -> dialog.dismiss());
+            AlertDialog dialog = builder.create();
+            dialog.show();
         });
     }
 

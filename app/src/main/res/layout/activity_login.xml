@@ -68,6 +68,16 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/tvResetPass"
+                android:layout_marginTop="@dimen/small_margin"
+                android:text="@string/forgot_password"
+                app:layout_constraintTop_toBottomOf="@id/tilSenha"
+                app:layout_constraintEnd_toEndOf="@id/tilSenha"
+                android:layout_width="wrap_content"
+                android:textColor="@color/green_500"
+                android:layout_height="wrap_content"/>
+
             <Button
                 android:id="@+id/btnSignUp"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -77,7 +87,7 @@
                 android:text="@string/sign_up"
                 android:textAllCaps="false"
                 app:layout_constraintStart_toStartOf="@id/tilSenha"
-                app:layout_constraintTop_toBottomOf="@id/tilSenha" />
+                app:layout_constraintTop_toBottomOf="@id/tvResetPass" />
 
             <Button
                 android:id="@+id/btnSignIn"

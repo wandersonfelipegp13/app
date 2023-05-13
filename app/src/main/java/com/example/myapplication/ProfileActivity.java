@@ -40,7 +40,29 @@ public class ProfileActivity extends AppCompatActivity {
         userService = new UserService();
 
         onClickSignOut();
+        onClickResetPassword();
 
+    }
+
+    private void onClickResetPassword() {
+        binding.tvRedefinePass.setOnClickListener(view -> {
+            AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+            builder.setTitle(getString(R.string.password_reset_sent_title));
+            builder.setMessage(getString(R.string.password_reset_email));
+            builder.setPositiveButton(R.string.yes, (dialog, id) -> {
+                auth.sendPasswordResetEmail(userService.getEmail())
+                        .addOnCompleteListener(task -> {
+                            if(task.isSuccessful()) {
+                                AppToast.longMsg(ProfileActivity.this, getString(R.string.password_reset_sent));
+                            } else {
+                                AppToast.longMsg(ProfileActivity.this, getString(R.string.password_reset_fail));
+                            }
+                        });
+            });
+            builder.setNegativeButton(R.string.cancel, (dialog, id) -> dialog.dismiss());
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        });
     }
 
     @Override

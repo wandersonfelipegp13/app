@@ -19,6 +19,12 @@
     <string name="button_sign_in">Entrar</string>
     <string name="sign_up">Criar conta</string>
     <string name="sign_in_error">Não foi possível entrar na sua conta. Tente novamente</string>
+    <string name="forgot_password">Esqueci minha senha.</string>
+    <string name="inform_email_reset">Informe seu email para enviarmos seu link de redefinição de senha.</string>
+    <string name="password_reset_fail">Não foi possível enviar o email de redefinição de senha.</string>
+    <string name="password_reset_sent_title">Redefinir senha</string>
+    <string name="password_reset_email">Será enviado um email para redefinição da sua senha. Deseja continuar?</string>
+    <string name="password_reset_sent">Email de redefinição de senha enviado.</string>
 
     <!-- SignUp Activity -->
     <string name="name_input_hint">Nome</string>
