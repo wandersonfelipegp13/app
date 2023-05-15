@@ -22,9 +22,11 @@
     <string name="forgot_password">Esqueci minha senha.</string>
     <string name="inform_email_reset">Informe seu email para enviarmos seu link de redefinição de senha.</string>
     <string name="password_reset_fail">Não foi possível enviar o email de redefinição de senha.</string>
-    <string name="password_reset_sent_title">Redefinir senha</string>
-    <string name="password_reset_email">Será enviado um email para redefinição da sua senha. Deseja continuar?</string>
+    <string name="password_reset_sent_title">Redefinir senha?</string>
+    <string name="password_reset_email">Será enviado um email para redefinição da sua senha.</string>
     <string name="password_reset_sent">Email de redefinição de senha enviado.</string>
+    <string name="email_reset_sent_title">Redefinir e-mail?</string>
+    <string name="email_reset_msg">Será enviado um e-mail para redefinição do seu e-mail.</string>
 
     <!-- SignUp Activity -->
     <string name="name_input_hint">Nome</string>
@@ -147,5 +149,15 @@
     <string name="confirm_password">Confirme sua senha</string>
     <string name="passwords_not_match">As senhas não conferem</string>
     <string name="error_update_name">Não foi possível atualizar seu nome. Tente novamente.</string>
+
+    <!-- Redefine E-mail Activity -->
+    <string name="toolbar_title_redefine_email">Redefinir E-mail</string>
+    <string name="redefine_email_msg">Informe seu novo endereço de e-mail para enviarmos um e-mail de redefinição.</string>
+    <string name="new_email_hint">Novo e-mail</string>
+    <string name="confirm_new_email_hint">Confirme o novo e-mail</string>
+    <string name="continue_redefine_email">Continuar</string>
+    <string name="emails_do_not_match">E-mails não conferem</string>
+    <string name="redefine_email_sent">E-mail de redefinição enviado</string>
+    <string name="redefine_email_not_sent">Não foi possível enviar e-mail. Tente novamente.</string>
 
 </resources>

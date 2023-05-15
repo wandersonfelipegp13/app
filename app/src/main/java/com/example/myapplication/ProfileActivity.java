@@ -36,12 +36,20 @@ public class ProfileActivity extends AppCompatActivity {
         ActionBar actionBar = ToolbarConfig.config(this, toolbar);
         actionBar.setDisplayShowTitleEnabled(true);
 
+        onClickSignOut();
+        onClickResetPassword();
+        onClickResetEmail();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
         auth = FirebaseAuth.getInstance();
         userService = new UserService();
 
-        onClickSignOut();
-        onClickResetPassword();
-
+        binding.titName.setText(userService.getName());
     }
 
     private void onClickResetPassword() {
@@ -49,32 +57,31 @@ public class ProfileActivity extends AppCompatActivity {
             AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
             builder.setTitle(getString(R.string.password_reset_sent_title));
             builder.setMessage(getString(R.string.password_reset_email));
-            builder.setPositiveButton(R.string.yes, (dialog, id) -> {
-                auth.sendPasswordResetEmail(userService.getEmail())
-                        .addOnCompleteListener(task -> {
-                            if(task.isSuccessful()) {
-                                AppToast.longMsg(ProfileActivity.this, getString(R.string.password_reset_sent));
-                            } else {
-                                AppToast.longMsg(ProfileActivity.this, getString(R.string.password_reset_fail));
-                            }
-                        });
-            });
+            builder.setPositiveButton(R.string.yes, (dialog, id) ->
+                    auth.sendPasswordResetEmail(userService.getEmail())
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    AppToast.longMsg(ProfileActivity.this, getString(R.string.password_reset_sent));
+                                } else {
+                                    AppToast.longMsg(ProfileActivity.this, getString(R.string.password_reset_fail));
+                                }
+                            })
+            );
             builder.setNegativeButton(R.string.cancel, (dialog, id) -> dialog.dismiss());
             AlertDialog dialog = builder.create();
             dialog.show();
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        binding.titName.setText(userService.getName());
+    private void onClickResetEmail() {
+        binding.tvRedefineEmail.setOnClickListener(view -> {
+            Intent intent = new Intent(this, RedefineEmailActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void onClickSignOut() {
-
         binding.tvExit.setOnClickListener(view -> {
-
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle(getString(R.string.confirm_sign_out));
             builder.setPositiveButton(R.string.yes, (dialog, id) -> {
@@ -86,18 +93,14 @@ public class ProfileActivity extends AppCompatActivity {
             builder.setNegativeButton(R.string.no, (dialog, id) -> dialog.dismiss());
             AlertDialog dialog = builder.create();
             dialog.show();
-
         });
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.save_menu, menu);
         return true;
-
     }
 
     @Override

@@ -40,6 +40,10 @@ public class UserService {
         firebaseUser.sendEmailVerification();
     }
 
+    public Task<Void> updateEmail(String newEmail) {
+        return firebaseUser.verifyBeforeUpdateEmail(newEmail);
+    }
+
     public boolean isEmailVerified() {
         return firebaseUser.isEmailVerified();
     }
