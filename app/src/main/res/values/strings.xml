@@ -81,6 +81,8 @@
     <string name="production_question">Este animal está produzindo?</string>
     <string name="animal_deleted">Animal excluído</string>
     <string name="animal_saved">Animal salvo</string>
+    <string name="animal_not_saved">Não foi possível salvar o animal. Tente novamente.</string>
+    <string name="inform_animal_id">Informe a identificação do animal</string>
 
     <!-- Care Adapter -->
     <string name="care_date">Data do cuidado</string>

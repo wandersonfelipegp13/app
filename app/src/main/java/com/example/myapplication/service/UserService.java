@@ -4,6 +4,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserService {
 
@@ -12,7 +17,7 @@ public class UserService {
 
     public UserService() {
         this.auth = FirebaseAuth.getInstance();
-        auth.useAppLanguage();
+        this.auth.useAppLanguage();
         this.firebaseUser = auth.getCurrentUser();
     }
 
@@ -54,6 +59,17 @@ public class UserService {
 
     public Task<Void> delete() {
         return firebaseUser.delete();
+    }
+
+    public void createUserDocument() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> createdAt = new HashMap<>();
+        createdAt.put("created_at", new Date());
+        db.collection("usuarios").document(firebaseUser.getUid()).set(createdAt);
+    }
+
+    public String getUid() {
+        return firebaseUser.getUid();
     }
 
 }

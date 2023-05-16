@@ -69,6 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
                     userService = new UserService();
                     userService.updateName(name);
                     userService.sendEmailVerification();
+                    userService.createUserDocument();
                     Intent intent = new Intent(SignUpActivity.this, EmailVerificationActivity.class);
                     startActivity(intent);
                     finish();
