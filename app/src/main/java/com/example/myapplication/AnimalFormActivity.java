@@ -92,7 +92,7 @@ public class AnimalFormActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(Intent.createChooser(intent,
-                "Escolha uma imagem"), GALLERY_PERMISSION_CODE);
+                getString(R.string.choose_image)), GALLERY_PERMISSION_CODE);
     }
 
     @Override
@@ -204,7 +204,7 @@ public class AnimalFormActivity extends AppCompatActivity {
             if (imageUri != null) {
 
                 ProgressDialog progressDialog = new ProgressDialog(this);
-                progressDialog.setTitle("Enviando foto");
+                progressDialog.setTitle(getString(R.string.saving_photo));
                 progressDialog.show();
 
                 FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -226,7 +226,7 @@ public class AnimalFormActivity extends AppCompatActivity {
                                 createAnimalDoc();
                             } else {
                                 progressDialog.dismiss();
-                                AppToast.shorMsg(getBaseContext(), "Não foi possível carregar a foto");
+                                AppToast.shorMsg(getBaseContext(), getString(R.string.error_saving_photo));
                                 photoId = null;
                                 createAnimalDoc();
                             }

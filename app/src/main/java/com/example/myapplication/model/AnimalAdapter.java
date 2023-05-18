@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 import com.google.android.material.imageview.ShapeableImageView;
 
@@ -45,6 +46,18 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalsVie
 
         Animal animal = animals.get(position);
         holder.name.setText(animal.getIdentificacao());
+
+        if (animal.getFoto() != null) {
+            Glide
+                    .with(context)
+                    .load("https://firebasestorage.googleapis.com/v0/b/tcc-if-889c5" +
+                            ".appspot.com/o/imagens%2F" +
+                            animal.getFoto() +
+                            "?alt=media"
+                    )
+                    .centerCrop()
+                    .into(holder.photo);
+        }
 
         if (onClickListener != null) {
             holder.itemView.setOnClickListener(view -> onClickListener.onClickAnimal(holder, position));

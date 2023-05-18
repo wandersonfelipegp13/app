@@ -1,11 +1,14 @@
 package com.example.myapplication.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 
 import java.util.Date;
 import java.util.Objects;
 
-public class Animal {
+public class Animal implements Parcelable {
 
     private String identificacao;
     private String foto;
@@ -27,6 +30,36 @@ public class Animal {
         this.setProduzindo(produzindo);
         this.setDataNascimento(dataNascimento);
     }
+
+    protected Animal(Parcel in) {
+        identificacao = in.readString();
+        foto = in.readString();
+        raca = in.readString();
+        if (in.readByte() == 0) {
+            peso = null;
+        } else {
+            peso = in.readDouble();
+        }
+        genero = in.readString();
+        produzindo = in.readByte() != 0;
+        if (in.readByte() == 0) {
+            dataNascimento = null;
+        } else {
+            dataNascimento = new Date(in.readLong());
+        }
+    }
+
+    public static final Creator<Animal> CREATOR = new Creator<Animal>() {
+        @Override
+        public Animal createFromParcel(Parcel in) {
+            return new Animal(in);
+        }
+
+        @Override
+        public Animal[] newArray(int size) {
+            return new Animal[size];
+        }
+    };
 
     public String getIdentificacao() {
         return identificacao;
@@ -109,6 +142,32 @@ public class Animal {
                 ", produzindo=" + produzindo +
                 ", dataNascimento=" + dataNascimento +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(identificacao);
+        parcel.writeString(foto);
+        parcel.writeString(raca);
+        if (peso == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeDouble(peso);
+        }
+        parcel.writeString(genero);
+        parcel.writeByte((byte) (produzindo ? 1 : 0));
+        if (dataNascimento == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(dataNascimento.getTime());
+        }
     }
 
 }

@@ -32,6 +32,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
+                    android:id="@+id/tvAnimalId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -76,6 +77,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tvAnimalRaca"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/animal_race"
@@ -100,6 +102,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tvAnimalNasc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/animal_birth"
@@ -124,6 +127,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tvAnimalPeso"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/animal_weight"
@@ -148,6 +152,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tvAnimalGenero"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/female"
@@ -172,6 +177,7 @@
                             android:textSize="14sp" />
 
                         <TextView
+                            android:id="@+id/tvAnimalProd"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/producing"

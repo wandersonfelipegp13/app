@@ -59,6 +59,7 @@
     <string name="animal_photo">Foto do animal</string>
     <string name="animal_name">Nome do animal</string>
     <string name="fab_add_animal">Adicionar animal</string>
+    <string name="animal_list_error">Carregando animal…</string>
 
     <!-- Animal Details Activity -->
     <string name="animal_id">Identificação</string>
@@ -71,6 +72,7 @@
     <string name="producing_status">Situação de Produção</string>
     <string name="producing">Produzindo</string>
     <string name="not_producing">Não produzindo</string>
+    <string name="not_informed">Não informado</string>
 
     <!-- Animal Form Activity -->
     <string name="animal_birth_not_selected">Selecionar data</string>
@@ -84,6 +86,9 @@
         <item>Galeria</item>
         <item>Excluir</item>
     </array>
+    <string name="saving_photo">Salvando Foto…</string>
+    <string name="error_saving_photo">Não foi possível salvar foto</string>
+    <string name="choose_image">Escolha uma imagem</string>
 
     <!-- Care Adapter -->
     <string name="care_date">Data do cuidado</string>
