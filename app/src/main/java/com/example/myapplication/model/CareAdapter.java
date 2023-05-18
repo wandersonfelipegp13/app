@@ -66,7 +66,7 @@ public class CareAdapter extends RecyclerView.Adapter<CareAdapter.CareViewHolder
 
             super(view);
             this.view = view;
-            this.data = (TextView) view.findViewById(R.id.tvCareDate);
+            this.data = view.findViewById(R.id.tvCareDate);
 
         }
 

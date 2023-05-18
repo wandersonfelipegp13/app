@@ -27,4 +27,6 @@
     <!-- App Bar -->
     <dimen name="app_bar_height">180dp</dimen>
 
+    <dimen name="input_width">320dp</dimen>
+
 </resources>

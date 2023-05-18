@@ -51,7 +51,7 @@ public class ProductionListActivity extends AppCompatActivity {
             Date data = new Date();
             data.setTime(data.getTime() - 100000);
 
-            productions.add(new Production(null, new Random().nextInt(200), data));
+            productions.add(new Production(null, (double) new Random().nextInt(200), data));
 
         }
 
@@ -60,7 +60,7 @@ public class ProductionListActivity extends AppCompatActivity {
             yesterday.set(Calendar.DAY_OF_YEAR, yesterday.get(Calendar.DAY_OF_YEAR) - 1);
 
             Date data = new Date(yesterday.getTimeInMillis());
-            productions.add(new Production(null, new Random().nextInt(200), data));
+            productions.add(new Production(null, (double) new Random().nextInt(200), data));
         }
 
         for (int i = 0; i < 22; i++) {
@@ -73,7 +73,7 @@ public class ProductionListActivity extends AppCompatActivity {
 
             Date date = calendar.getTime();
 
-            productions.add(new Production(null, new Random().nextInt(200), date));
+            productions.add(new Production(null, (double) new Random().nextInt(200), date));
 
         }
 

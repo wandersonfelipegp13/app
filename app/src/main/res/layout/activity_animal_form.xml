@@ -38,7 +38,6 @@
                 android:contentDescription="@string/animal_photo"
                 android:scaleType="centerInside"
                 android:src="@drawable/outline_add_a_photo_24"
-                android:tint="@color/gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar"
@@ -47,10 +46,9 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilId"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/input_width"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/medium_margin"
-                android:minEms="18"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageAnimal">
@@ -67,10 +65,9 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilRaca"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_margin"
-                android:minEms="18"
+                android:layout_width="@dimen/input_width"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tilId">
@@ -87,10 +84,9 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilPeso"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="wrap_content"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_margin"
-                android:minEms="18"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tilRaca">

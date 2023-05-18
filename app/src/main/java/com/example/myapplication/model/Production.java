@@ -8,13 +8,13 @@ import java.util.Objects;
 public class Production {
 
     private String id;
-    private double litros;
+    private Double litros;
     private Date data;
 
     public Production() {
     }
 
-    public Production(String id, double litros, Date data) {
+    public Production(String id, Double litros, Date data) {
         this.id = id;
         this.litros = litros;
         this.data = data;
@@ -28,11 +28,11 @@ public class Production {
         this.id = id;
     }
 
-    public double getLitros() {
+    public Double getLitros() {
         return litros;
     }
 
-    public void setLitros(double litros) {
+    public void setLitros(Double litros) {
         this.litros = litros;
     }
 

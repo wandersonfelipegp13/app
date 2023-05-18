@@ -9,6 +9,7 @@
     <string name="delete">Excluir</string>
     <string name="cancel">Cancelar</string>
     <string name="date_format">dd/mm/aaaa</string>
+    <string name="loading">Carregando…</string>
 
     <string name="care">Cuidados</string>
     <string name="productions">Produções</string>
@@ -48,14 +49,10 @@
     <string name="button_production">Produção</string>
     <string name="button_report">Relatório</string>
     <string name="dashboard_title">Dashboard</string>
-    <string name="card_daily_production">Produção diária</string>
-    <string name="card_daily_production_value">126 Litros</string>
+    <string name="card_daily_production">Hoje</string>
     <string name="card_cows">Vacas</string>
-    <string name="card_cows_value">32 Vacas</string>
-    <string name="card_monthly_production">Produção mensal</string>
-    <string name="card_monthly_production_value">1.385 Litros</string>
+    <string name="card_monthly_production">Esse mês</string>
     <string name="card_births">Nascimentos</string>
-    <string name="card_births_value">3 nascimentos</string>
 
     <!-- Animals List Activity -->
     <string name="toolbar_animals_title">Animais</string>
@@ -83,6 +80,10 @@
     <string name="animal_saved">Animal salvo</string>
     <string name="animal_not_saved">Não foi possível salvar o animal. Tente novamente.</string>
     <string name="inform_animal_id">Informe a identificação do animal</string>
+    <array name="image_fonts">
+        <item>Galeria</item>
+        <item>Excluir</item>
+    </array>
 
     <!-- Care Adapter -->
     <string name="care_date">Data do cuidado</string>

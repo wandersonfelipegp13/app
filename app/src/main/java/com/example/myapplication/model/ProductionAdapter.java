@@ -67,8 +67,8 @@ public class ProductionAdapter extends RecyclerView.Adapter<ProductionAdapter.Pr
         public ProductionsViewHolder(View view) {
             super(view);
             this.view = view;
-            this.liters = (TextView) view.findViewById(R.id.tvLiters);
-            this.date = (TextView) view.findViewById(R.id.tvProdDate);
+            this.liters = view.findViewById(R.id.tvLiters);
+            this.date = view.findViewById(R.id.tvProdDate);
         }
 
     }

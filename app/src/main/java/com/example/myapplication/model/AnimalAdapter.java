@@ -64,12 +64,10 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalsVie
         public View view;
 
         public AnimalsViewHolder(View view) {
-
             super(view);
             this.view = view;
-            this.photo = (ShapeableImageView) view.findViewById(R.id.sivAnimalPhoto);
-            this.name = (TextView) view.findViewById(R.id.tvAnimalName);
-
+            this.photo = view.findViewById(R.id.sivAnimalPhoto);
+            this.name = view.findViewById(R.id.tvAnimalName);
         }
 
     }

@@ -10,7 +10,7 @@ public class Animal {
     private String identificacao;
     private String foto;
     private String raca;
-    private double peso;
+    private Double peso;
     private String genero;
     private boolean produzindo;
     private Date dataNascimento;
@@ -18,7 +18,7 @@ public class Animal {
     public Animal() {
     }
 
-    public Animal(String identificacao, String foto, String raca, double peso, String genero, boolean produzindo, Date dataNascimento) {
+    public Animal(String identificacao, String foto, String raca, Double peso, String genero, boolean produzindo, Date dataNascimento) {
         this.setIdentificacao(identificacao);
         this.setFoto(foto);
         this.setRaca(raca);
@@ -52,11 +52,11 @@ public class Animal {
         this.raca = raca;
     }
 
-    public double getPeso() {
+    public Double getPeso() {
         return peso;
     }
 
-    public void setPeso(double peso) {
+    public void setPeso(Double peso) {
         this.peso = peso;
     }
 
