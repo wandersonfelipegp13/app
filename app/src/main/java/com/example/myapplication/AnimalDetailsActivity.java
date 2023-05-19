@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,10 +18,13 @@ import com.example.myapplication.constants.Constants;
 import com.example.myapplication.databinding.ActivityAnimalDetailsBinding;
 import com.example.myapplication.model.Animal;
 import com.example.myapplication.service.AnimalService;
+import com.example.myapplication.service.ProductionService;
 import com.example.myapplication.util.AppToast;
 import com.example.myapplication.util.DateUtils;
 import com.example.myapplication.util.ToolbarConfig;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Calendar;
 
@@ -133,13 +138,58 @@ public class AnimalDetailsActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         } else if (id == R.id.menuItemExcluir) {
-            finish();
-            AppToast.longMsg(this, getString(R.string.animal_deleted));
+            confirmDelete();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
 
+    }
+
+    private void deleteAnimal() {
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle(getString(R.string.animal_deleting));
+        progressDialog.show();
+
+        ProductionService productionService = new ProductionService(animalId);
+
+        productionService.getAll().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (DocumentSnapshot prod : task.getResult().getDocuments()) {
+                    productionService.delete(prod.getId());
+                }
+
+                if (animal.getFoto() != null) {
+                    StorageReference storageReference = FirebaseStorage.getInstance()
+                            .getReference()
+                            .child("imagens/" + animal.getFoto());
+                    storageReference.delete();
+                }
+
+                AnimalService animalService = new AnimalService();
+                animalService.delete(animalId).addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()) {
+                        progressDialog.dismiss();
+                        finish();
+                        AppToast.longMsg(this, getString(R.string.animal_deleted));
+                    }
+                });
+
+            } else {
+                AppToast.shorMsg(getBaseContext(), getString(R.string.animal_delete_error));
+            }
+            progressDialog.dismiss();
+        });
+    }
+
+    private void confirmDelete() {
+        AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.animal_delete_confirm));
+        builder.setMessage(getString(R.string.animal_delete_message));
+        builder.setPositiveButton(R.string.yes, (dialog, id) -> deleteAnimal());
+        builder.setNegativeButton(R.string.cancel, (dialog, id) -> dialog.dismiss());
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 }

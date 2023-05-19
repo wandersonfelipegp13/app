@@ -36,4 +36,8 @@ public class AnimalService {
         return collection.orderBy("identificacao").get();
     }
 
+    public Task<Void> delete(String animalId) {
+        return collection.document(animalId).delete();
+    }
+
 }

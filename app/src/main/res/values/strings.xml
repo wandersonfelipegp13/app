@@ -74,6 +74,10 @@
     <string name="not_producing">Não produzindo</string>
     <string name="not_informed">Não informado</string>
     <string name="error_loading_animal">"Não foi possível carregar o animal. Tente Novamente"</string>
+    <string name="animal_delete_error">Erro ao deletar animal</string>
+    <string name="animal_deleting">Deletando animal</string>
+    <string name="animal_delete_confirm">Deletar animal?</string>
+    <string name="animal_delete_message">Essa ação deletará todas as produções e dados desse animal.</string>
 
     <!-- Animal Form Activity -->
     <string name="animal_birth_not_selected">Selecionar data</string>
