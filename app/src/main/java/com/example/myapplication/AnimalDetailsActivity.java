@@ -119,6 +119,7 @@ public class AnimalDetailsActivity extends AppCompatActivity {
 
         if (id == R.id.menuItemProducoes) {
             Intent intent = new Intent(this, ProductionListActivity.class);
+            intent.putExtra("animalDocId", animalId);
             startActivity(intent);
             return true;
         } else if (id == R.id.menuItemCuidados) {
@@ -128,7 +129,7 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         } else if (id == R.id.menuItemEditar) {
             Intent intent = new Intent(this, AnimalFormActivity.class);
             intent.putExtra("animal", animal);
-            intent.putExtra("animalDocId", getIntent().getStringExtra("animalDocId"));
+            intent.putExtra("animalDocId", animalId);
             startActivity(intent);
             return true;
         } else if (id == R.id.menuItemExcluir) {

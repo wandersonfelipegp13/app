@@ -7,25 +7,15 @@ import java.util.Objects;
 
 public class Production {
 
-    private String id;
     private Double litros;
     private Date data;
 
     public Production() {
     }
 
-    public Production(String id, Double litros, Date data) {
-        this.id = id;
+    public Production(Double litros, Date data) {
         this.litros = litros;
         this.data = data;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public Double getLitros() {
@@ -49,20 +39,18 @@ public class Production {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Production that = (Production) o;
-        return id.equals(that.id);
+        return litros.equals(that.litros) && data.equals(that.data);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(litros, data);
     }
 
-    @NonNull
     @Override
     public String toString() {
         return "Production{" +
-                "id='" + id + '\'' +
-                ", litros=" + litros +
+                "litros=" + litros +
                 ", data=" + data +
                 '}';
     }

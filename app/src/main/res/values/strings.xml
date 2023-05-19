@@ -123,6 +123,7 @@
     <string name="production_saved">Produção salva</string>
     <string name="production_deleted">Produção excluída</string>
     <string name="production_hour">Hora da produção</string>
+    <string name="production_invalid_liters">Informe os litros produzidos</string>
     <string name="production_hour_not_select">Selecionar hora</string>
     <string name="production_hour_select">Selecione a hora da produção</string>
 
