@@ -168,6 +168,9 @@
     <string name="confirm_password">Confirme sua senha</string>
     <string name="passwords_not_match">As senhas não conferem</string>
     <string name="error_update_name">Não foi possível atualizar seu nome. Tente novamente.</string>
+    <string name="profile_delete_account_confirm">Deletar conta?</string>
+    <string name="profile_delete_account_msg">Essa ação apagará todos os dados da sua conta, assim como os animais e produções.</string>
+    <string name="profile_deleting_data">Deletando dados…</string>
 
     <!-- Redefine E-mail Activity -->
     <string name="toolbar_title_redefine_email">Redefinir E-mail</string>

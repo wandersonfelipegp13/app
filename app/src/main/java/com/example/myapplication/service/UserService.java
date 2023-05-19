@@ -61,6 +61,11 @@ public class UserService {
         return firebaseUser.delete();
     }
 
+    public Task<Void> deleteDocument() {
+        return FirebaseFirestore.getInstance().collection("usuarios")
+                .document(firebaseUser.getUid()).delete();
+    }
+
     public void createUserDocument() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> createdAt = new HashMap<>();

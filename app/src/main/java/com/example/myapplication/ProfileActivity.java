@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,11 +14,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.myapplication.databinding.ActivityProfileBinding;
+import com.example.myapplication.model.Animal;
+import com.example.myapplication.service.AnimalService;
+import com.example.myapplication.service.ProductionService;
 import com.example.myapplication.service.UserService;
 import com.example.myapplication.util.AppToast;
 import com.example.myapplication.util.InputValidator;
 import com.example.myapplication.util.ToolbarConfig;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -39,6 +46,71 @@ public class ProfileActivity extends AppCompatActivity {
         onClickSignOut();
         onClickResetPassword();
         onClickResetEmail();
+        onDeleteAccount();
+
+    }
+
+    private void onDeleteAccount() {
+        binding.tvDeleteAccount.setOnClickListener(view -> {
+            AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+            builder.setTitle(getString(R.string.profile_delete_account_confirm));
+            builder.setMessage(getString(R.string.profile_delete_account_msg));
+            builder.setPositiveButton(R.string.yes, (dialog, id) -> deleteProductions());
+            builder.setNegativeButton(R.string.cancel, (dialog, id) -> dialog.dismiss());
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        });
+    }
+
+    private void deleteProductions() {
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle(getString(R.string.profile_deleting_data));
+        progressDialog.show();
+
+        AnimalService animalService = new AnimalService();
+
+        animalService.getAll().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+
+                for (QueryDocumentSnapshot animalDoc : task.getResult()) {
+
+                    Animal animal = animalDoc.toObject(Animal.class);
+
+                    // Photo Delete
+                    if (animal.getFoto() != null) {
+                        StorageReference storageReference = FirebaseStorage.getInstance()
+                                .getReference()
+                                .child("imagens/" + animal.getFoto());
+                        storageReference.delete();
+                    }
+
+                    // Production Delete
+                    ProductionService productionService = new ProductionService(animalDoc.getId());
+
+                    productionService.getAll().addOnCompleteListener(task2 -> {
+                        if (task2.isSuccessful()) {
+                            for (QueryDocumentSnapshot prod : task2.getResult()) {
+                                productionService.delete(prod.getId());
+                            }
+                        }}
+                    );
+
+                    // Animal Delete
+                    animalService.delete(animalDoc.getId());
+                }
+
+                userService.deleteDocument();
+                FirebaseAuth.getInstance().signOut();
+                userService.delete().addOnCompleteListener(task1 -> {
+                    AppToast.longMsg(getBaseContext(), "Conta excluída");
+                    Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                });
+
+            }
+        });
+        progressDialog.dismiss();
 
     }
 
