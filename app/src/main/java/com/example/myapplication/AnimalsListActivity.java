@@ -27,6 +27,7 @@ public class AnimalsListActivity extends AppCompatActivity {
 
     private ActivityAnimalsListBinding binding;
     private List<Animal> animals;
+    private List<String> animalsDocIds;
     private AnimalService animalService;
 
     @Override
@@ -87,11 +88,13 @@ public class AnimalsListActivity extends AppCompatActivity {
         super.onStart();
 
         animals = new ArrayList<>();
+        animalsDocIds = new ArrayList<>();
 
         animalService.getAll().addOnCompleteListener(task -> {
            if (task.isSuccessful()) {
                for (QueryDocumentSnapshot document : task.getResult()) {
                    Animal animal = document.toObject(Animal.class);
+                   animalsDocIds.add(document.getId());
                    animals.add(animal);
                }
                setList(animals);
@@ -111,9 +114,11 @@ public class AnimalsListActivity extends AppCompatActivity {
         return ((holder, idx) -> {
             try {
                 Animal animal = animals.get(idx);
+                String animalDocId = animalsDocIds.get(idx);
                 Intent intent = new Intent(AnimalsListActivity.this,
                         AnimalDetailsActivity.class);
                 intent.putExtra("animal", animal);
+                intent.putExtra("animalDocId", animalDocId);
                 startActivity(intent);
             } catch (Exception e) {
                 AppToast.shorMsg(getBaseContext(), getString(R.string.animal_list_error));

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
+import com.example.myapplication.constants.Constants;
 import com.google.android.material.imageview.ShapeableImageView;
 
 import java.util.List;
@@ -50,11 +51,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalsVie
         if (animal.getFoto() != null) {
             Glide
                     .with(context)
-                    .load("https://firebasestorage.googleapis.com/v0/b/tcc-if-889c5" +
-                            ".appspot.com/o/imagens%2F" +
-                            animal.getFoto() +
-                            "?alt=media"
-                    )
+                    .load(Constants.STORAGE_IMAGES + animal.getFoto() + "?alt=media")
                     .centerCrop()
                     .into(holder.photo);
         }

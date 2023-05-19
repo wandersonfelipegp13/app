@@ -73,6 +73,7 @@
     <string name="producing">Produzindo</string>
     <string name="not_producing">Não produzindo</string>
     <string name="not_informed">Não informado</string>
+    <string name="error_loading_animal">"Não foi possível carregar o animal. Tente Novamente"</string>
 
     <!-- Animal Form Activity -->
     <string name="animal_birth_not_selected">Selecionar data</string>
@@ -89,6 +90,7 @@
     <string name="saving_photo">Salvando Foto…</string>
     <string name="error_saving_photo">Não foi possível salvar foto</string>
     <string name="choose_image">Escolha uma imagem</string>
+    <string name="error_update_photo">Não foi possível atualizar a foto</string>
 
     <!-- Care Adapter -->
     <string name="care_date">Data do cuidado</string>

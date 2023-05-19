@@ -3,7 +3,6 @@ package com.example.myapplication;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -18,6 +17,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.constants.Constants;
 import com.example.myapplication.databinding.ActivityAnimalFormBinding;
 import com.example.myapplication.model.Animal;
 import com.example.myapplication.service.AnimalService;
@@ -28,6 +28,7 @@ import com.example.myapplication.util.InputValidator;
 import com.example.myapplication.util.ToolbarConfig;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -41,6 +42,8 @@ public class AnimalFormActivity extends AppCompatActivity {
     private Calendar nascimento;
     private Uri imageUri;
     private String photoId;
+    private Animal animal;
+    private boolean deletePhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +55,57 @@ public class AnimalFormActivity extends AppCompatActivity {
         Toolbar toolbar = binding.toolbar;
         ToolbarConfig.config(this, toolbar);
 
-        onClickSelectPhoto();
+        deletePhoto = false;
+
+        animal = getIntent().getParcelableExtra("animal");
+        if (animal != null) setData();
+
+        onClickPhoto();
         onClickSelectBirthDate();
         onClickDeleteBirthDate();
         onClickMale();
         onClickProducing();
 
+    }
+
+    private void setData() {
+        if (animal.getFoto() != null) {
+            Glide
+                    .with(AnimalFormActivity.this)
+                    .load(Constants.STORAGE_IMAGES + animal.getFoto() + "?alt=media")
+                    .centerCrop()
+                    .into(binding.imageAnimal);
+        }
+
+        setContent(animal.getIdentificacao(), binding.titId);
+        setContent(animal.getRaca(), binding.titRaca);
+
+        if (animal.getPeso() != null) {
+            setContent(String.valueOf(animal.getPeso()), binding.titPeso);
+        }
+
+        if (animal.getDataNascimento() != null) {
+            nascimento = Calendar.getInstance();
+            nascimento.setTime(animal.getDataNascimento());
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(animal.getDataNascimento());
+            binding.tvDataNasc.setText(DateUtils.dateToString(calendar));
+        }
+
+        if (animal.getGenero() != null && animal.getGenero().equals(getString(R.string.male))) {
+            binding.rbMacho.setChecked(true);
+        }
+
+        if (animal.isProduzindo()) {
+            binding.sProduzindo.setChecked(true);
+        }
+
+    }
+
+    private void setContent(String content, TextInputEditText textInputEditText) {
+        if (content != null) {
+            textInputEditText.setText(content);
+        }
     }
 
     private void onClickMale() {
@@ -68,7 +116,7 @@ public class AnimalFormActivity extends AppCompatActivity {
         binding.sProduzindo.setOnClickListener(view -> binding.rbFemea.setChecked(true));
     }
 
-    private void onClickSelectPhoto() {
+    private void onClickPhoto() {
         binding.imageAnimal.setOnClickListener(view -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder
@@ -82,6 +130,7 @@ public class AnimalFormActivity extends AppCompatActivity {
                                         AppCompatResources.getDrawable(getBaseContext(),
                                                 R.drawable.outline_add_a_photo_24));
                                 imageUri = null;
+                                deletePhoto = true;
                         }
                     });
             builder.create().show();
@@ -93,21 +142,6 @@ public class AnimalFormActivity extends AppCompatActivity {
                 MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(Intent.createChooser(intent,
                 getString(R.string.choose_image)), GALLERY_PERMISSION_CODE);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        for (int result : grantResults) {
-            if (result == PackageManager.PERMISSION_DENIED) {
-                AppToast.shorMsg(getBaseContext(),
-                        "Aceite a permissao para poder acessar a camera");
-                break;
-            }
-        }
-
     }
 
     @Override
@@ -203,34 +237,45 @@ public class AnimalFormActivity extends AppCompatActivity {
 
             if (imageUri != null) {
 
-                ProgressDialog progressDialog = new ProgressDialog(this);
-                progressDialog.setTitle(getString(R.string.saving_photo));
-                progressDialog.show();
+                String oldPhoto = null;
 
-                FirebaseStorage storage = FirebaseStorage.getInstance();
-                StorageReference reference = storage.getReference().child("imagens");
-                photoId = UUID.randomUUID().toString();
-                StorageReference photo = reference.child(photoId);
+                if (animal != null) {
+                    oldPhoto = animal.getFoto();
+                }
 
-                photo.putFile(imageUri)
+                if (oldPhoto != null) {
+                    StorageReference storageReference = FirebaseStorage.getInstance()
+                            .getReference()
+                            .child("imagens/" + oldPhoto);
 
-                        .addOnProgressListener(snapshot -> {
-                            double progress = (100.0 * snapshot.getBytesTransferred()
-                                    / snapshot.getTotalByteCount());
-                            progressDialog.setMessage((int) progress + "%");
-                        })
+                    storageReference.delete().addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            saveNewPhoto();
+                        } else {
+                            AppToast.shorMsg(getBaseContext(), getString(R.string.error_update_photo));
+                            createAnimalDoc();
+                        }
+                    });
+                } else {
+                    saveNewPhoto();
+                }
 
-                        .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                progressDialog.dismiss();
-                                createAnimalDoc();
-                            } else {
-                                progressDialog.dismiss();
-                                AppToast.shorMsg(getBaseContext(), getString(R.string.error_saving_photo));
-                                photoId = null;
-                                createAnimalDoc();
-                            }
-                        });
+            } else if (animal != null && animal.getFoto() != null && deletePhoto) {
+
+                StorageReference storageReference = FirebaseStorage.getInstance()
+                        .getReference()
+                        .child("imagens/" + animal.getFoto());
+
+                storageReference.delete().addOnCompleteListener(task -> {
+                    if (task.isComplete()) {
+                        animal.setFoto(null);
+                        createAnimalDoc();
+                    } else {
+                        AppToast.shorMsg(getBaseContext(), getString(R.string.error_update_photo));
+                        createAnimalDoc();
+                    }
+                });
+
             } else {
                 createAnimalDoc();
             }
@@ -243,40 +288,87 @@ public class AnimalFormActivity extends AppCompatActivity {
 
     }
 
-    private void createAnimalDoc() {
-        Animal animal = new Animal();
+    private void saveNewPhoto() {
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle(getString(R.string.saving_photo));
+        progressDialog.show();
 
-        animal.setIdentificacao(binding.titId.getText().toString());
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference reference = storage.getReference().child("imagens");
+        photoId = UUID.randomUUID().toString();
+        StorageReference photo = reference.child(photoId);
+
+        photo.putFile(imageUri)
+
+                .addOnProgressListener(snapshot -> {
+                    double progress = (100.0 * snapshot.getBytesTransferred()
+                            / snapshot.getTotalByteCount());
+                    progressDialog.setMessage((int) progress + "%");
+                })
+
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        progressDialog.dismiss();
+                        createAnimalDoc();
+                    } else {
+                        progressDialog.dismiss();
+                        AppToast.shorMsg(getBaseContext(), getString(R.string.error_saving_photo));
+                        photoId = null;
+                        createAnimalDoc();
+                    }
+                });
+    }
+
+    private void createAnimalDoc() {
+        Animal saveAnimal = new Animal();
+
+        saveAnimal.setIdentificacao(binding.titId.getText().toString());
 
         if (InputValidator.isValid(binding.titRaca)) {
-            animal.setRaca(binding.titRaca.getText().toString());
+            saveAnimal.setRaca(binding.titRaca.getText().toString());
         }
 
         if (InputValidator.isValid(binding.titPeso)) {
-            animal.setPeso(Double.parseDouble(binding.titPeso.getText().toString()));
+            saveAnimal.setPeso(Double.parseDouble(binding.titPeso.getText().toString()));
         }
 
-        if (nascimento != null) animal.setDataNascimento(nascimento.getTime());
+        if (nascimento != null) saveAnimal.setDataNascimento(nascimento.getTime());
 
-        if (binding.rbMacho.isChecked()) animal.setGenero(getString(R.string.male));
-        else animal.setGenero(getString(R.string.female));
+        if (binding.rbMacho.isChecked()) saveAnimal.setGenero(getString(R.string.male));
+        else saveAnimal.setGenero(getString(R.string.female));
 
-        animal.setProduzindo(binding.sProduzindo.isChecked());
+        saveAnimal.setProduzindo(binding.sProduzindo.isChecked());
+
+        if (animal != null && animal.getFoto() != null) {
+            saveAnimal.setFoto(animal.getFoto());
+        }
 
         if (photoId != null) {
-            animal.setFoto(photoId);
+            saveAnimal.setFoto(photoId);
         }
 
         AnimalService animalService = new AnimalService();
 
-        animalService.createAnimal(animal).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                finish();
-                AppToast.longMsg(this, getString(R.string.animal_saved));
-            } else {
-                AppToast.longMsg(this, getString(R.string.animal_not_saved));
-            }
-        });
+        if (getIntent().getStringExtra("animalDocId") == null) {
+            animalService.createAnimal(saveAnimal).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    finish();
+                    AppToast.longMsg(this, getString(R.string.animal_saved));
+                } else {
+                    AppToast.longMsg(this, getString(R.string.animal_not_saved));
+                }
+            });
+        } else {
+            animalService.updateAnimal(saveAnimal, getIntent().getStringExtra("animalDocId"))
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            finish();
+                            AppToast.longMsg(this, getString(R.string.animal_saved));
+                        } else {
+                            AppToast.longMsg(this, getString(R.string.animal_not_saved));
+                        }
+                    });
+        }
     }
 
 }

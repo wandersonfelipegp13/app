@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,11 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.constants.Constants;
 import com.example.myapplication.databinding.ActivityAnimalDetailsBinding;
 import com.example.myapplication.model.Animal;
+import com.example.myapplication.service.AnimalService;
 import com.example.myapplication.util.AppToast;
 import com.example.myapplication.util.DateUtils;
 import com.example.myapplication.util.ToolbarConfig;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.Calendar;
 
@@ -25,6 +27,7 @@ public class AnimalDetailsActivity extends AppCompatActivity {
 
     private ActivityAnimalDetailsBinding binding;
     private Animal animal;
+    private String animalId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +39,30 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         Toolbar toolbar = binding.toolbar;
         ToolbarConfig.config(this, toolbar);
 
-        animal = getIntent().getParcelableExtra("animal");
-        if (animal != null) setData();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        animalId = getIntent().getStringExtra("animalDocId");
+        if (animalId != null) loadData();
+    }
+
+    private void loadData() {
+        AnimalService animalService = new AnimalService();
+        animalService.getAnimal(animalId).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                animal = document.toObject(Animal.class);
+                setData();
+            } else {
+                AppToast.shorMsg(getBaseContext(), getString(R.string.error_loading_animal));
+                finish();
+            }
+        });
     }
 
     private void setData() {
-
-        Log.d("animal", animal.toString());
-
         binding.content.tvAnimalId.setText(animal.getIdentificacao());
 
         setContent(animal.getRaca(), binding.content.tvAnimalRaca);
@@ -74,14 +92,9 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         if (animal.getFoto() != null) {
             Glide
                     .with(getBaseContext())
-                    .load("https://firebasestorage.googleapis.com/v0/b/tcc-if-889c5" +
-                            ".appspot.com/o/imagens%2F" +
-                            animal.getFoto() +
-                            "?alt=media"
-                    )
+                    .load(Constants.STORAGE_IMAGES + animal.getFoto() + "?alt=media")
                     .into(binding.acivFoto);
         }
-
     }
 
     private void setContent(String content, TextView textView) {
@@ -94,11 +107,9 @@ public class AnimalDetailsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.animal_menu, menu);
         return true;
-
     }
 
     @Override
@@ -106,31 +117,24 @@ public class AnimalDetailsActivity extends AppCompatActivity {
 
         int id = item.getItemId();
 
-
         if (id == R.id.menuItemProducoes) {
-
             Intent intent = new Intent(this, ProductionListActivity.class);
             startActivity(intent);
             return true;
-
         } else if (id == R.id.menuItemCuidados) {
-
             Intent intent = new Intent(this, CareListActivity.class);
             startActivity(intent);
             return true;
-
         } else if (id == R.id.menuItemEditar) {
-
             Intent intent = new Intent(this, AnimalFormActivity.class);
+            intent.putExtra("animal", animal);
+            intent.putExtra("animalDocId", getIntent().getStringExtra("animalDocId"));
             startActivity(intent);
             return true;
-
         } else if (id == R.id.menuItemExcluir) {
-
             finish();
             AppToast.longMsg(this, getString(R.string.animal_deleted));
             return true;
-
         }
 
         return super.onOptionsItemSelected(item);
