@@ -23,6 +23,7 @@ public class ProductionListActivity extends AppCompatActivity {
 
     private ActivityProductionListBinding binding;
     private String animalId;
+    private List<Production> productions;
     private List<String> prodIds;
 
     @Override
@@ -46,7 +47,7 @@ public class ProductionListActivity extends AppCompatActivity {
 
         animalId = getIntent().getStringExtra("animalDocId");
 
-        List<Production> productions = new ArrayList<>();
+        productions = new ArrayList<>();
         prodIds = new ArrayList<>();
 
         ProductionService productionService = new ProductionService(animalId);
@@ -71,6 +72,8 @@ public class ProductionListActivity extends AppCompatActivity {
         return ((holder, idx) -> {
             Intent intent = new Intent(getBaseContext(), ProductionFormActivity.class);
             intent.putExtra("animalDocId", animalId);
+            intent.putExtra("prodDocId", prodIds.get(idx));
+            intent.putExtra("producao", productions.get(idx));
             startActivity(intent);
         });
     }

@@ -33,7 +33,7 @@ public class AnimalService {
     }
 
     public Task<QuerySnapshot> getAll() {
-        return collection.get();
+        return collection.orderBy("identificacao").get();
     }
 
 }

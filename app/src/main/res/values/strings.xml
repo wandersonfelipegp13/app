@@ -126,6 +126,10 @@
     <string name="production_invalid_liters">Informe os litros produzidos</string>
     <string name="production_hour_not_select">Selecionar hora</string>
     <string name="production_hour_select">Selecione a hora da produção</string>
+    <string name="production_updated">Produção atualizada</string>
+    <string name="production_save_error">Não foi possível salvar produção</string>
+    <string name="production_invalid_hour">Hora inválida</string>
+    <string name="production_delete_error">Não foi possível deletar produção</string>
 
     <string name="search_animal">Buscar animal</string>
     <string name="select_animal">Selecione o animal</string>

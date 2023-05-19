@@ -4,6 +4,7 @@ import com.example.myapplication.model.Production;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 public class ProductionService {
@@ -25,8 +26,16 @@ public class ProductionService {
         return collection.document().set(production);
     }
 
+    public Task<Void> update(Production production, String productionId) {
+        return collection.document(productionId).set(production);
+    }
+
     public Task<QuerySnapshot> getAll() {
-        return collection.get();
+        return collection.orderBy("data", Query.Direction.DESCENDING).get();
+    }
+
+    public Task<Void> delete(String productionId) {
+        return collection.document(productionId).delete();
     }
 
 }

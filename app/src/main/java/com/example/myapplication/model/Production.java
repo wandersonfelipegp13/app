@@ -1,11 +1,14 @@
 package com.example.myapplication.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 
 import java.util.Date;
 import java.util.Objects;
 
-public class Production {
+public class Production implements Parcelable {
 
     private Double litros;
     private Date data;
@@ -17,6 +20,31 @@ public class Production {
         this.litros = litros;
         this.data = data;
     }
+
+    protected Production(Parcel in) {
+        if (in.readByte() == 0) {
+            litros = null;
+        } else {
+            litros = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            data = null;
+        } else {
+            data = new Date(in.readLong());
+        }
+    }
+
+    public static final Creator<Production> CREATOR = new Creator<Production>() {
+        @Override
+        public Production createFromParcel(Parcel in) {
+            return new Production(in);
+        }
+
+        @Override
+        public Production[] newArray(int size) {
+            return new Production[size];
+        }
+    };
 
     public Double getLitros() {
         return litros;
@@ -47,6 +75,7 @@ public class Production {
         return Objects.hash(litros, data);
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "Production{" +
@@ -55,4 +84,24 @@ public class Production {
                 '}';
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        if (litros == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeDouble(litros);
+        }
+        if (data == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeLong(data.getTime());
+        }
+    }
 }

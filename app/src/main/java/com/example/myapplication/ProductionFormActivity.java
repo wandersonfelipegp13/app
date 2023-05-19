@@ -29,6 +29,12 @@ public class ProductionFormActivity extends AppCompatActivity {
     private ActivityProductionFormBinding binding;
     private Calendar date;
     private String animalId;
+    private String prodId;
+    private Production producao;
+
+    // todo
+    private int hour;
+    private int min;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +47,39 @@ public class ProductionFormActivity extends AppCompatActivity {
         ToolbarConfig.config(this, toolbar);
 
         animalId = getIntent().getStringExtra("animalDocId");
+        prodId = getIntent().getStringExtra("prodDocId");
+        producao = getIntent().getParcelableExtra("producao");
 
         date = Calendar.getInstance();
-        changeDate(date);
-        changeTime(date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE));
+
+        if (producao == null) {
+            hour = date.get(Calendar.HOUR_OF_DAY);
+            min = date.get(Calendar.MINUTE);
+            binding.tvDataProd.setText(DateUtils.dateToString(date));
+            binding.tvTimeProd.setText(DateUtils.timeToString(date));
+//            changeTime(date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE));
+        } else {
+            setData();
+        }
 
         onClickSelectProductionDate();
         onClickSelectProductionTime();
 
     }
 
+    private void setData() {
+        binding.titLiters.setText(String.valueOf(producao.getLitros().doubleValue()));
+        date.setTime(producao.getData());
+        binding.tvDataProd.setText(DateUtils.dateToString(date));
+        binding.tvTimeProd.setText(DateUtils.timeToString(date));
+        hour = date.get(Calendar.HOUR_OF_DAY);
+        min = date.get(Calendar.MINUTE);
+    }
+
     private void changeDate(Calendar date) {
         this.date = date;
+        this.date.set(Calendar.HOUR_OF_DAY, hour);
+        this.date.set(Calendar.MINUTE, min);
         binding.tvDataProd.setText(DateUtils.dateToString(date));
     }
 
@@ -131,38 +158,72 @@ public class ProductionFormActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.delete) {
-            finish();
-            AppToast.longMsg(this, getString(R.string.production_deleted));
+
+            if (prodId == null) {
+                finish();
+                return true;
+            }
+
+            ProductionService productionService = new ProductionService(animalId);
+            productionService.delete(prodId).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    finish();
+                    AppToast.longMsg(this, getString(R.string.production_deleted));
+                } else {
+                    AppToast.longMsg(this, getString(R.string.production_delete_error));
+                }
+            });
+
             return true;
         } else if (id == R.id.save) {
+
             if (!InputValidator.isValid(binding.titLiters)) {
                 AppToast.shorMsg(getBaseContext(), getString(R.string.production_invalid_liters));
                 return true;
             }
-            createProd();
+
+            Calendar now = Calendar.getInstance();
+            if (DateUtils.isToday(date.getTime()) &&
+                    (now.get(Calendar.HOUR_OF_DAY) < date.get(Calendar.HOUR_OF_DAY)) ||
+                    (now.get(Calendar.HOUR_OF_DAY) == date.get(Calendar.HOUR_OF_DAY) &&
+                            now.get(Calendar.MINUTE) < date.get(Calendar.MINUTE))) {
+                AppToast.shorMsg(getBaseContext(), getString(R.string.production_invalid_hour));
+                return true;
+            }
+
+            saveProd();
         }
 
         return super.onOptionsItemSelected(item);
 
     }
 
-    private void createProd() {
-
-        if (animalId == null) {
-            animalId = getIntent().getStringExtra("animalDocId");
-            AppToast.shorMsg(getBaseContext(), animalId);
-            return;
-        }
+    private void saveProd() {
 
         Production production = new Production();
         production.setLitros(Double.parseDouble(binding.titLiters.getText().toString()));
         production.setData(date.getTime());
 
         ProductionService productionService = new ProductionService(animalId);
+
+        if (prodId != null) {
+            productionService.update(production, prodId).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    AppToast.shorMsg(getBaseContext(), getString(R.string.production_updated));
+                    finish();
+                } else {
+                    AppToast.shorMsg(getBaseContext(), getString(R.string.production_save_error));
+                }
+            });
+            return;
+        }
+
         productionService.create(production).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                finish();
                 AppToast.longMsg(this, getString(R.string.production_saved));
+                finish();
+            } else {
+                AppToast.shorMsg(getBaseContext(), getString(R.string.production_save_error));
             }
         });
 
