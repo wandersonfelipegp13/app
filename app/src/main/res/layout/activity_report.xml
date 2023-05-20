@@ -40,35 +40,55 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilDataInicial"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    <LinearLayout
+                        android:id="@+id/llInitialDate"
                         android:layout_width="152dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/extra_small_margin">
+                        android:layout_marginEnd="@dimen/extra_small_margin"
+                        android:background="@drawable/date_time_border"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/medium_padding"
+                        android:paddingVertical="@dimen/small_padding">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:hint="@string/hint_initial_date"
-                            android:inputType="date" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/hint_initial_date" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <TextView
+                            android:id="@+id/tvInitialDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/animal_birth_not_selected"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="@dimen/medium_text" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilDataFinal"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llFinalDate"
                         android:layout_width="152dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/extra_small_margin">
+                        android:layout_marginStart="@dimen/extra_small_margin"
+                        android:background="@drawable/date_time_border"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/medium_padding"
+                        android:paddingVertical="@dimen/small_padding">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:hint="@string/hint_final_date"
-                            android:inputType="date" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/hint_final_date" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <TextView
+                            android:id="@+id/tvFinalDate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/animal_birth_not_selected"
+                            android:textColor="@color/dark_gray"
+                            android:textSize="@dimen/medium_text" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -93,9 +113,10 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvTotalProd"
                             android:layout_weight="1"
                             android:fontFamily="@font/ubuntu_light"
-                            android:text="@string/report_placeholder"
+                            android:text="@string/loading"
                             android:textStyle="bold" />
 
                     </TableRow>
@@ -110,9 +131,10 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvDailyAvg"
                             android:layout_weight="1"
                             android:fontFamily="@font/ubuntu_light"
-                            android:text="@string/report_placeholder"
+                            android:text="@string/loading"
                             android:textStyle="bold" />
 
                     </TableRow>
@@ -127,9 +149,10 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvProducingCows"
                             android:layout_weight="1"
                             android:fontFamily="@font/ubuntu_light"
-                            android:text="@string/report_placeholder"
+                            android:text="@string/loading"
                             android:textStyle="bold" />
 
                     </TableRow>
@@ -144,9 +167,10 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvCowAvg"
                             android:layout_weight="1"
                             android:fontFamily="@font/ubuntu_light"
-                            android:text="@string/report_placeholder"
+                            android:text="@string/loading"
                             android:textStyle="bold" />
 
                     </TableRow>
@@ -161,9 +185,10 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvHigherProd"
                             android:layout_weight="1"
                             android:fontFamily="@font/ubuntu_light"
-                            android:text="@string/report_placeholder"
+                            android:text="@string/loading"
                             android:textStyle="bold" />
 
                     </TableRow>
@@ -178,26 +203,10 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvLowerProd"
                             android:layout_weight="1"
                             android:fontFamily="@font/ubuntu_light"
-                            android:text="@string/report_placeholder"
-                            android:textStyle="bold" />
-
-                    </TableRow>
-
-                    <TableRow android:paddingVertical="@dimen/small_padding">
-
-                        <TextView
-                            android:layout_weight="1"
-                            android:fontFamily="@font/ubuntu_light"
-                            android:text="@string/report_care"
-                            android:textColor="@color/black"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_weight="1"
-                            android:fontFamily="@font/ubuntu_light"
-                            android:text="@string/report_placeholder"
+                            android:text="@string/loading"
                             android:textStyle="bold" />
 
                     </TableRow>
@@ -212,9 +221,10 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvBirths"
                             android:layout_weight="1"
                             android:fontFamily="@font/ubuntu_light"
-                            android:text="@string/report_placeholder"
+                            android:text="@string/loading"
                             android:textStyle="bold" />
 
                     </TableRow>

@@ -13,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class AnimalService {
 
@@ -47,10 +48,23 @@ public class AnimalService {
         return collection.whereEqualTo("genero", "Fêmea").get();
     }
 
+    public Task<QuerySnapshot> getProducingCows() {
+        return collection
+                .whereEqualTo("produzindo", true)
+                .get();
+    }
+
     public Task<QuerySnapshot> getBirths() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_MONTH, 1);
         return collection.whereGreaterThan("dataNascimento", calendar.getTime()).get();
+    }
+
+    public Task<QuerySnapshot> getBirths(Date initialDate, Date finalDate) {
+        return collection
+                .whereGreaterThan("dataNascimento", initialDate)
+                .whereLessThan("dataNascimento", finalDate)
+                .get();
     }
 
     public Task<Void> delete(String animalId) {

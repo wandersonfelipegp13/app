@@ -148,8 +148,8 @@
     <string name="report_daily_average">Média diária</string>
     <string name="report_cows_producing">Vacas produzindo</string>
     <string name="report_cow_average">Média por vaca</string>
-    <string name="report_cow_produced_most">Vaca que mais produziu</string>
-    <string name="report_cow_produced_least">Vaca que menos produziu</string>
+    <string name="report_cow_produced_most">Maior produção</string>
+    <string name="report_cow_produced_least">Menor produção</string>
     <string name="report_care">Cuidados</string>
     <string name="report_births">Nascimentos</string>
 

@@ -46,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
 
         AnimalService animalService = new AnimalService();
 
-        animalService.getAll().addOnSuccessListener(queryDocumentSnapshots -> {
+        animalService.getAllCows().addOnSuccessListener(queryDocumentSnapshots -> {
             for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
 
                 ProductionService productionService = new ProductionService(doc.getId());

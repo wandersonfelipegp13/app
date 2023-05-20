@@ -9,6 +9,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ProductionService {
@@ -40,6 +41,13 @@ public class ProductionService {
 
     public Task<QuerySnapshot> getAll() {
         return collection.orderBy("data", Query.Direction.DESCENDING).get();
+    }
+
+    public Task<QuerySnapshot> getAll(Date initialDate, Date finalDate) {
+        return collection
+                .whereGreaterThan("data", initialDate)
+                .whereLessThan("data", finalDate)
+                .get();
     }
 
     public Task<QuerySnapshot> getProdToday() {
