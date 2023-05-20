@@ -8,6 +8,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class ProductionService {
@@ -39,6 +40,21 @@ public class ProductionService {
 
     public Task<QuerySnapshot> getAll() {
         return collection.orderBy("data", Query.Direction.DESCENDING).get();
+    }
+
+    public Task<QuerySnapshot> getProdToday() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        return collection.whereGreaterThan("data", calendar.getTime()).get();
+    }
+
+    public Task<QuerySnapshot> getProdThisMonth() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        return collection.whereGreaterThan("data", calendar.getTime()).get();
     }
 
 }

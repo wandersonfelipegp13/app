@@ -41,15 +41,17 @@ public class EmailVerificationActivity extends AppCompatActivity {
     }
 
     private void onClickDeleteAccount() {
-        binding.btnDeleteAcc.setOnClickListener(view ->
-                userService.delete().addOnSuccessListener(unused -> {
-                    AppToast.longMsg(EmailVerificationActivity.this, getString(R.string.account_deleted));
-                    auth.signOut();
-                    backToLogin();
-                }).addOnFailureListener(e ->
-                        AppToast.longMsg(EmailVerificationActivity.this,
-                                getString(R.string.account_delete_error))
-                ));
+        binding.btnDeleteAcc.setOnClickListener(view -> {
+            userService.deleteDocument();
+            userService.delete().addOnSuccessListener(unused -> {
+                AppToast.longMsg(EmailVerificationActivity.this, getString(R.string.account_deleted));
+                auth.signOut();
+                backToLogin();
+            }).addOnFailureListener(e ->
+                    AppToast.longMsg(EmailVerificationActivity.this,
+                            getString(R.string.account_delete_error))
+            );
+        });
     }
 
     private void onCLickSignOut() {
