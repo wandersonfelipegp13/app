@@ -134,9 +134,10 @@
     <string name="production_save_error">Não foi possível salvar produção</string>
     <string name="production_invalid_hour">Hora inválida</string>
     <string name="production_delete_error">Não foi possível deletar produção</string>
-
+    <string name="production_not_producing">Animal não está produzindo</string>
     <string name="search_animal">Buscar animal</string>
     <string name="select_animal">Selecione o animal</string>
+    <string name="animal_with_prods">Não é possível mudar o gênero de um animal com produções cadastradas</string>
 
     <!-- Report Activity -->
     <string name="toolbar_report_title">Relatório</string>

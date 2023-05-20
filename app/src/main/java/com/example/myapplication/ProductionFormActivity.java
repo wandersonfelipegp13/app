@@ -31,8 +31,6 @@ public class ProductionFormActivity extends AppCompatActivity {
     private String animalId;
     private String prodId;
     private Production producao;
-
-    // todo
     private int hour;
     private int min;
 
@@ -57,7 +55,6 @@ public class ProductionFormActivity extends AppCompatActivity {
             min = date.get(Calendar.MINUTE);
             binding.tvDataProd.setText(DateUtils.dateToString(date));
             binding.tvTimeProd.setText(DateUtils.timeToString(date));
-//            changeTime(date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE));
         } else {
             setData();
         }

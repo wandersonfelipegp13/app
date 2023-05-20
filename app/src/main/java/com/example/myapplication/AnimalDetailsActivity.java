@@ -125,6 +125,7 @@ public class AnimalDetailsActivity extends AppCompatActivity {
         if (id == R.id.menuItemProducoes) {
             Intent intent = new Intent(this, ProductionListActivity.class);
             intent.putExtra("animalDocId", animalId);
+            intent.putExtra("animal", animal);
             startActivity(intent);
             return true;
         } else if (id == R.id.menuItemCuidados) {

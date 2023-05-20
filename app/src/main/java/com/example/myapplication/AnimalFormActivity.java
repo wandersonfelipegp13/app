@@ -21,6 +21,7 @@ import com.example.myapplication.constants.Constants;
 import com.example.myapplication.databinding.ActivityAnimalFormBinding;
 import com.example.myapplication.model.Animal;
 import com.example.myapplication.service.AnimalService;
+import com.example.myapplication.service.ProductionService;
 import com.example.myapplication.util.AppToast;
 import com.example.myapplication.util.DateUtils;
 import com.example.myapplication.util.DateValidatorNoFuture;
@@ -109,7 +110,24 @@ public class AnimalFormActivity extends AppCompatActivity {
     }
 
     private void onClickMale() {
-        binding.rbMacho.setOnClickListener(view -> binding.sProduzindo.setChecked(false));
+
+        binding.rbMacho.setOnClickListener(view -> {
+            binding.sProduzindo.setChecked(false);
+
+            ProductionService productionService = new ProductionService(
+                    getIntent().getStringExtra("animalDocId"));
+
+            productionService.getAll().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    if (task.getResult().getDocuments().size() > 0) {
+                        AppToast.shorMsg(getBaseContext(),
+                                getString(R.string.animal_with_prods));
+                        binding.rbFemea.setChecked(true);
+                    }
+                }
+            });
+        });
+
     }
 
     private void onClickProducing() {

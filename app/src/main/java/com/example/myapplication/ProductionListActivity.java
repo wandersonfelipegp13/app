@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.myapplication.databinding.ActivityProductionListBinding;
+import com.example.myapplication.model.Animal;
 import com.example.myapplication.model.Production;
 import com.example.myapplication.model.ProductionAdapter;
 import com.example.myapplication.service.ProductionService;
+import com.example.myapplication.util.AppToast;
 import com.example.myapplication.util.ToolbarConfig;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -80,6 +82,14 @@ public class ProductionListActivity extends AppCompatActivity {
 
     private void onClickNewProduction() {
         binding.fabAddProduction.setOnClickListener(view -> {
+
+            Animal animal = getIntent().getParcelableExtra("animal");
+
+            if (!animal.isProduzindo()) {
+                AppToast.shorMsg(getBaseContext(), getString(R.string.production_not_producing));
+                return;
+            }
+
             Intent intent = new Intent(getBaseContext(), ProductionFormActivity.class);
             intent.putExtra("animalDocId", animalId);
             startActivity(intent);
