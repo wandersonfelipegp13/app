@@ -44,14 +44,6 @@
             android:exported="false"
             android:launchMode="singleTop" />
         <activity
-            android:name=".CareActivity"
-            android:exported="false"
-            android:launchMode="singleTop" />
-        <activity
-            android:name=".CareListActivity"
-            android:exported="false"
-            android:launchMode="singleTop" />
-        <activity
             android:name=".AnimalDetailsActivity"
             android:exported="false"
             android:launchMode="singleTop" />

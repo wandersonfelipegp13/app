@@ -128,10 +128,6 @@ public class AnimalDetailsActivity extends AppCompatActivity {
             intent.putExtra("animal", animal);
             startActivity(intent);
             return true;
-        } else if (id == R.id.menuItemCuidados) {
-            Intent intent = new Intent(this, CareListActivity.class);
-            startActivity(intent);
-            return true;
         } else if (id == R.id.menuItemEditar) {
             Intent intent = new Intent(this, AnimalFormActivity.class);
             intent.putExtra("animal", animal);

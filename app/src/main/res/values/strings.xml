@@ -96,19 +96,6 @@
     <string name="choose_image">Escolha uma imagem</string>
     <string name="error_update_photo">Não foi possível atualizar a foto</string>
 
-    <!-- Care Adapter -->
-    <string name="care_date">Data do cuidado</string>
-
-    <!-- Care List Activity -->
-    <string name="toolbar_care_title">Cuidados</string>
-    <string name="fab_add_cuidado">Adicionar cuidado</string>
-
-    <!-- Care Activity -->
-    <string name="care_desc">Descrição</string>
-    <string name="care_med">Medicamentos</string>
-    <string name="care_deleted">Cuidado deletado</string>
-    <string name="care_saved">Cuidado salvo</string>
-
     <!-- Production Details Activity -->
     <string name="production_animal_id">Identificação do animal</string>
     <string name="production_date">Data da produção</string>

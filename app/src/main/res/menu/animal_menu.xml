@@ -8,11 +8,6 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/menuItemCuidados"
-        android:title="@string/care"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/menuItemEditar"
         android:title="@string/edit"
         app:showAsAction="ifRoom" />
