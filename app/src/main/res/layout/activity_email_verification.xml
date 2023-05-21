@@ -18,6 +18,11 @@
 
             <TextView
                 android:id="@+id/tvLogo"
+                android:drawableTop="@mipmap/ic_launcher"
+                android:fontFamily="@font/ubuntu_light"
+                android:textStyle="bold"
+                android:textSize="@dimen/medium_text"
+                android:textColor="@color/green_500"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/medium_margin"

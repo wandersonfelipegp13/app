@@ -17,6 +17,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
+
 import br.com.controleite.constants.Constants;
 import br.com.controleite.databinding.ActivityAnimalFormBinding;
 import br.com.controleite.model.Animal;
@@ -27,6 +28,7 @@ import br.com.controleite.util.DateUtils;
 import br.com.controleite.util.DateValidatorNoFuture;
 import br.com.controleite.util.InputValidator;
 import br.com.controleite.util.ToolbarConfig;
+
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
@@ -114,18 +116,22 @@ public class AnimalFormActivity extends AppCompatActivity {
         binding.rbMacho.setOnClickListener(view -> {
             binding.sProduzindo.setChecked(false);
 
-            ProductionService productionService = new ProductionService(
-                    getIntent().getStringExtra("animalDocId"));
+            String id = getIntent().getStringExtra("animalDocId");
 
-            productionService.getAll().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    if (task.getResult().getDocuments().size() > 0) {
-                        AppToast.shorMsg(getBaseContext(),
-                                getString(R.string.animal_with_prods));
-                        binding.rbFemea.setChecked(true);
+            if (id != null) {
+
+                ProductionService productionService = new ProductionService(id);
+
+                productionService.getAll().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        if (task.getResult().getDocuments().size() > 0) {
+                            AppToast.shorMsg(getBaseContext(),
+                                    getString(R.string.animal_with_prods));
+                            binding.rbFemea.setChecked(true);
+                        }
                     }
-                }
-            });
+                });
+            }
         });
 
     }
