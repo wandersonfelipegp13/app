@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.myapplication">
+    package="br.com.controleite">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -20,51 +20,51 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name=".RedefineEmailActivity"
+            android:name="br.com.controleite.RedefineEmailActivity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity
-            android:name=".EmailVerificationActivity"
+            android:name="br.com.controleite.EmailVerificationActivity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity
-            android:name=".ProfileActivity"
+            android:name="br.com.controleite.ProfileActivity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity
-            android:name=".ReportActivity"
+            android:name="br.com.controleite.ReportActivity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity
-            android:name=".ProductionFormActivity"
+            android:name="br.com.controleite.ProductionFormActivity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity
-            android:name=".ProductionListActivity"
+            android:name="br.com.controleite.ProductionListActivity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity
-            android:name=".AnimalDetailsActivity"
+            android:name="br.com.controleite.AnimalDetailsActivity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity
-            android:name=".AnimalsListActivity"
+            android:name="br.com.controleite.AnimalsListActivity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity
-            android:name=".HomeActivity"
+            android:name="br.com.controleite.HomeActivity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity
-            android:name=".SignUpActivity"
+            android:name="br.com.controleite.SignUpActivity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity
-            android:name=".LoginActivity"
+            android:name="br.com.controleite.LoginActivity"
             android:exported="false"
             android:launchMode="singleTop" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name="br.com.controleite.SplashScreenActivity"
             android:exported="true"
             android:launchMode="singleTop">
             <intent-filter>
@@ -74,7 +74,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AnimalFormActivity"
+            android:name="br.com.controleite.AnimalFormActivity"
             android:exported="false"
             android:launchMode="singleTop" />
 
