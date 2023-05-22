@@ -184,16 +184,21 @@ public class ReportActivity extends AppCompatActivity {
 
                     double lowerProd = productions.stream().min(Double::compareTo).get();
 
-                    StringBuilder result = new StringBuilder(lowerProd + " L");
-                    int prods = productions.size();
-                    for (int i = 0; i < prods; i++) {
-                        Double prod = productions.get(i);
-                        if (prod == lowerProd) {
-                            String animalName = "\n" + animals.get(i);
-                            result.append(animalName);
+                    if (lowerProd < higherProd) {
+
+                        StringBuilder result = new StringBuilder(lowerProd + " L");
+                        int prods = productions.size();
+                        for (int i = 0; i < prods; i++) {
+                            Double prod = productions.get(i);
+                            if (prod == lowerProd) {
+                                String animalName = "\n" + animals.get(i);
+                                result.append(animalName);
+                            }
                         }
+                        binding.tvLowerProd.setText(result);
+                    } else {
+                        binding.tvLowerProd.setText("---");
                     }
-                    binding.tvLowerProd.setText(result);
 
                 });
 

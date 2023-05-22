@@ -21,7 +21,7 @@ public class AnimalService {
         collection = db
                 .collection("usuarios")
                 .document(userService.getUid())
-                .collection("vacas");
+                .collection("animais");
     }
 
     public Task<Void> createAnimal(Animal animal) {

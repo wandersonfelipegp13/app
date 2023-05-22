@@ -14,14 +14,14 @@ public class ProductionService {
 
     private final CollectionReference collection;
 
-    public ProductionService(String vacaId) {
+    public ProductionService(String animalId) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         UserService userService = new UserService();
         collection = db
                 .collection("usuarios")
                 .document(userService.getUid())
-                .collection("vacas")
-                .document(vacaId)
+                .collection("animais")
+                .document(animalId)
                 .collection("producoes");
     }
 

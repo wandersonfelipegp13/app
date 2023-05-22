@@ -102,10 +102,10 @@ public class ProfileActivity extends AppCompatActivity {
                 userService.deleteDocument();
                 FirebaseAuth.getInstance().signOut();
                 userService.delete().addOnCompleteListener(task1 -> {
-                    AppToast.longMsg(getBaseContext(), "Conta excluída");
+                    AppToast.longMsg(getBaseContext(), getString(R.string.account_deleted));
                     Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-                    startActivity(intent);
                     finish();
+                    startActivity(intent);
                 });
 
             }
