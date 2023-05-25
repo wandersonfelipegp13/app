@@ -1,7 +1,5 @@
 package br.com.controleite.service;
 
-import br.com.controleite.R;
-import br.com.controleite.model.Animal;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -10,6 +8,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Calendar;
 import java.util.Date;
+
+import br.com.controleite.model.Animal;
 
 public class AnimalService {
 

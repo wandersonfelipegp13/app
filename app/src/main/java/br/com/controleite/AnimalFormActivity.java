@@ -1,8 +1,11 @@
 package br.com.controleite;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,6 +20,14 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.Calendar;
+import java.util.UUID;
 
 import br.com.controleite.constants.Constants;
 import br.com.controleite.databinding.ActivityAnimalFormBinding;
@@ -28,15 +39,6 @@ import br.com.controleite.util.DateUtils;
 import br.com.controleite.util.DateValidatorNoFuture;
 import br.com.controleite.util.InputValidator;
 import br.com.controleite.util.ToolbarConfig;
-
-import com.google.android.material.datepicker.CalendarConstraints;
-import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
-import java.util.Calendar;
-import java.util.UUID;
 
 public class AnimalFormActivity extends AppCompatActivity {
 
@@ -142,6 +144,30 @@ public class AnimalFormActivity extends AppCompatActivity {
 
     private void onClickPhoto() {
         binding.imageAnimal.setOnClickListener(view -> {
+
+            boolean isConnected = false;
+
+            ConnectivityManager cm = (ConnectivityManager) getBaseContext()
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            Network network = cm.getActiveNetwork();
+
+            if (network != null) {
+                NetworkCapabilities networkCapabilities = cm.getNetworkCapabilities(network);
+
+                isConnected = networkCapabilities
+                        .hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                        networkCapabilities
+                                .hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                        networkCapabilities
+                                .hasTransport(NetworkCapabilities.TRANSPORT_VPN);
+            }
+
+            if (!isConnected) {
+                AppToast.shorMsg(getBaseContext(), getString(R.string.offline_upload));
+                return;
+            }
+
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder
                     .setItems(R.array.image_fonts, (dialog, which) -> {
@@ -272,14 +298,8 @@ public class AnimalFormActivity extends AppCompatActivity {
                             .getReference()
                             .child("imagens/" + oldPhoto);
 
-                    storageReference.delete().addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            saveNewPhoto();
-                        } else {
-                            AppToast.shorMsg(getBaseContext(), getString(R.string.error_update_photo));
-                            createAnimalDoc();
-                        }
-                    });
+                    storageReference.delete();
+                    saveNewPhoto();
                 } else {
                     saveNewPhoto();
                 }
@@ -290,18 +310,12 @@ public class AnimalFormActivity extends AppCompatActivity {
                         .getReference()
                         .child("imagens/" + animal.getFoto());
 
-                storageReference.delete().addOnCompleteListener(task -> {
-                    if (task.isComplete()) {
-                        animal.setFoto(null);
-                        createAnimalDoc();
-                    } else {
-                        AppToast.shorMsg(getBaseContext(), getString(R.string.error_update_photo));
-                        createAnimalDoc();
-                    }
-                });
+                storageReference.delete();
+                animal.setFoto(null);
+                saveAnimalDoc();
 
             } else {
-                createAnimalDoc();
+                saveAnimalDoc();
             }
 
             return true;
@@ -313,37 +327,15 @@ public class AnimalFormActivity extends AppCompatActivity {
     }
 
     private void saveNewPhoto() {
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle(getString(R.string.saving_photo));
-        progressDialog.show();
-
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference reference = storage.getReference().child("imagens");
         photoId = UUID.randomUUID().toString();
         StorageReference photo = reference.child(photoId);
-
-        photo.putFile(imageUri)
-
-                .addOnProgressListener(snapshot -> {
-                    double progress = (100.0 * snapshot.getBytesTransferred()
-                            / snapshot.getTotalByteCount());
-                    progressDialog.setMessage((int) progress + "%");
-                })
-
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        progressDialog.dismiss();
-                        createAnimalDoc();
-                    } else {
-                        progressDialog.dismiss();
-                        AppToast.shorMsg(getBaseContext(), getString(R.string.error_saving_photo));
-                        photoId = null;
-                        createAnimalDoc();
-                    }
-                });
+        photo.putFile(imageUri);
+        saveAnimalDoc();
     }
 
-    private void createAnimalDoc() {
+    private void saveAnimalDoc() {
         Animal saveAnimal = new Animal();
 
         saveAnimal.setIdentificacao(binding.titId.getText().toString());
@@ -374,25 +366,12 @@ public class AnimalFormActivity extends AppCompatActivity {
         AnimalService animalService = new AnimalService();
 
         if (getIntent().getStringExtra("animalDocId") == null) {
-            animalService.createAnimal(saveAnimal).addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    finish();
-                    AppToast.longMsg(this, getString(R.string.animal_saved));
-                } else {
-                    AppToast.longMsg(this, getString(R.string.animal_not_saved));
-                }
-            });
+            animalService.createAnimal(saveAnimal);
         } else {
-            animalService.updateAnimal(saveAnimal, getIntent().getStringExtra("animalDocId"))
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            finish();
-                            AppToast.longMsg(this, getString(R.string.animal_saved));
-                        } else {
-                            AppToast.longMsg(this, getString(R.string.animal_not_saved));
-                        }
-                    });
+            animalService.updateAnimal(saveAnimal, getIntent().getStringExtra("animalDocId"));
         }
+
+        finish();
     }
 
 }

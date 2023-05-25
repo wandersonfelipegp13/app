@@ -9,6 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.android.material.timepicker.TimeFormat;
+
+import java.util.Calendar;
+
 import br.com.controleite.databinding.ActivityProductionFormBinding;
 import br.com.controleite.model.Production;
 import br.com.controleite.service.ProductionService;
@@ -17,12 +24,6 @@ import br.com.controleite.util.DateUtils;
 import br.com.controleite.util.DateValidatorNoFuture;
 import br.com.controleite.util.InputValidator;
 import br.com.controleite.util.ToolbarConfig;
-import com.google.android.material.datepicker.CalendarConstraints;
-import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.timepicker.MaterialTimePicker;
-import com.google.android.material.timepicker.TimeFormat;
-
-import java.util.Calendar;
 
 public class ProductionFormActivity extends AppCompatActivity {
 
@@ -162,16 +163,10 @@ public class ProductionFormActivity extends AppCompatActivity {
             }
 
             ProductionService productionService = new ProductionService(animalId);
-            productionService.delete(prodId).addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    finish();
-                    AppToast.longMsg(this, getString(R.string.production_deleted));
-                } else {
-                    AppToast.longMsg(this, getString(R.string.production_delete_error));
-                }
-            });
-
+            productionService.delete(prodId);
+            finish();
             return true;
+
         } else if (id == R.id.save) {
 
             if (!InputValidator.isValid(binding.titLiters)) {
@@ -204,25 +199,13 @@ public class ProductionFormActivity extends AppCompatActivity {
         ProductionService productionService = new ProductionService(animalId);
 
         if (prodId != null) {
-            productionService.update(production, prodId).addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    AppToast.shorMsg(getBaseContext(), getString(R.string.production_updated));
-                    finish();
-                } else {
-                    AppToast.shorMsg(getBaseContext(), getString(R.string.production_save_error));
-                }
-            });
+            productionService.update(production, prodId);
+            finish();
             return;
         }
 
-        productionService.create(production).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                AppToast.longMsg(this, getString(R.string.production_saved));
-                finish();
-            } else {
-                AppToast.shorMsg(getBaseContext(), getString(R.string.production_save_error));
-            }
-        });
+        productionService.create(production);
+        finish();
 
     }
 

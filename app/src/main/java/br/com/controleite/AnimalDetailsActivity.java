@@ -1,7 +1,6 @@
 package br.com.controleite;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.Calendar;
+
 import br.com.controleite.constants.Constants;
 import br.com.controleite.databinding.ActivityAnimalDetailsBinding;
 import br.com.controleite.model.Animal;
@@ -22,11 +27,6 @@ import br.com.controleite.service.ProductionService;
 import br.com.controleite.util.AppToast;
 import br.com.controleite.util.DateUtils;
 import br.com.controleite.util.ToolbarConfig;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
-import java.util.Calendar;
 
 public class AnimalDetailsActivity extends AppCompatActivity {
 
@@ -144,10 +144,6 @@ public class AnimalDetailsActivity extends AppCompatActivity {
     }
 
     private void deleteAnimal() {
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle(getString(R.string.animal_deleting));
-        progressDialog.show();
-
         ProductionService productionService = new ProductionService(animalId);
 
         productionService.getAll().addOnCompleteListener(task -> {
@@ -164,18 +160,10 @@ public class AnimalDetailsActivity extends AppCompatActivity {
                 }
 
                 AnimalService animalService = new AnimalService();
-                animalService.delete(animalId).addOnCompleteListener(task1 -> {
-                    if (task1.isSuccessful()) {
-                        progressDialog.dismiss();
-                        finish();
-                        AppToast.longMsg(this, getString(R.string.animal_deleted));
-                    }
-                });
+                animalService.delete(animalId);
+                finish();
 
-            } else {
-                AppToast.shorMsg(getBaseContext(), getString(R.string.animal_delete_error));
             }
-            progressDialog.dismiss();
         });
     }
 

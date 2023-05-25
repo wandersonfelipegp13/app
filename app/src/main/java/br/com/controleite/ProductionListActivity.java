@@ -72,11 +72,15 @@ public class ProductionListActivity extends AppCompatActivity {
 
     protected ProductionAdapter.ProductionOnClickListener onClickProduction() {
         return ((holder, idx) -> {
-            Intent intent = new Intent(getBaseContext(), ProductionFormActivity.class);
-            intent.putExtra("animalDocId", animalId);
-            intent.putExtra("prodDocId", prodIds.get(idx));
-            intent.putExtra("producao", productions.get(idx));
-            startActivity(intent);
+            try {
+                Intent intent = new Intent(getBaseContext(), ProductionFormActivity.class);
+                intent.putExtra("animalDocId", animalId);
+                intent.putExtra("prodDocId", prodIds.get(idx));
+                intent.putExtra("producao", productions.get(idx));
+                startActivity(intent);
+            } catch (Exception e) {
+                AppToast.shorMsg(getBaseContext(), getString(R.string.loading_production));
+            }
         });
     }
 
@@ -85,8 +89,8 @@ public class ProductionListActivity extends AppCompatActivity {
 
             Animal animal = getIntent().getParcelableExtra("animal");
 
-            if (!animal.isProduzindo()) {
-                AppToast.shorMsg(getBaseContext(), getString(R.string.production_not_producing));
+            if (animal != null && !animal.isProduzindo()) {
+                AppToast.shorMsg(getBaseContext(), getString(R.string.animal_not_producing));
                 return;
             }
 
